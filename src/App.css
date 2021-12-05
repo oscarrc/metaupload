@@ -89,6 +89,7 @@ section#about .container {
 /* Uploader */
 article.uploader {
     display: flex;
+    flex-flow: column;
     justify-content: center;
     align-items: center;
     position: absolute;
@@ -96,10 +97,31 @@ article.uploader {
     min-height: 25vh;
     top: 100%;
     cursor: pointer;
+    transition: color var(--transition), border-color var(--transition);
 }
 
+article svg {
+    width: 50px;
+    height: auto;
+    margin: var(--spacing)
+}
+
+article.uploader span {
+    padding: var(--block-spacing-vertical) calc(var(--block-spacing-horizontal) * 4);
+    border: 1px dashed var(--color);
+    border-radius: var(--border-radius);
+}
+article.uploader:hover span{
+    border-color: var(--primary)
+}
+article.uploader small {
+    display: block;
+}
 article.uploader:hover small {
     color: var(--primary);
+}
+article.uploader:hover svg {
+    fill: var(--primary);
 }
 
 /* FOOTER */
@@ -120,7 +142,8 @@ footer.grid{
 footer p{
     border-top: 1px solid var(--contrast);
     padding: var(--typography-spacing-vertical) 0;
-    margin: 0;
+    margin-bottom: 0;    
+    margin-top: var(--typography-spacing-vertical);
     text-align: center;
     --color: white;
 }
