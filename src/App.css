@@ -71,62 +71,63 @@ section#about .container {
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 75vh;
-  }
-  .hero.background-image-container {
+    min-height: 85vh;
+}
+.hero.background-image-container {
     text-align: center;
     background-image: url('assets/img/wave-hero-background.svg');
     background-size: cover;
     background-repeat: no-repeat;
     background-position: bottom;
-  }
-  .hero .grid div {
+}
+.hero .grid>div {
     position: relative;
-  }
+}
 
-  .hero h1 {
+.hero h1 {
     --color: white
-  }
+}
 
-  .hero p {
-    --color: #bbc6ce
-  }
+.hero p {
+--color: #bbc6ce
+}
 
 /* Uploader */
-article.uploader {
+.uploader {
+    position: absolute;
+    top: 100%;
+    width: 100%;
+}
+.uploader article {
     display: flex;
     flex-flow: column;
     justify-content: center;
     align-items: center;
-    position: absolute;
-    width: 100%;
-    min-height: 25vh;
-    top: 100%;
+    min-height: 25vh;    
     cursor: pointer;
     transition: color var(--transition), border-color var(--transition);
 }
-
-article svg {
+.uploader article svg {
     width: 50px;
     height: auto;
     margin: var(--spacing)
 }
-
-article.uploader span {
-    padding: var(--block-spacing-vertical) calc(var(--block-spacing-horizontal) * 4);
+.uploader article span {
+    padding: var(--block-spacing-vertical) 0;
     border: 1px dashed var(--color);
     border-radius: var(--border-radius);
+    width: 100%;
 }
-article.uploader:hover span{
+.uploader article:hover span{
     border-color: var(--primary)
 }
-article.uploader small {
+.uploader article small {
     display: block;
 }
-article.uploader:hover small {
+.uploader article:hover small {
     color: var(--primary);
 }
-article.uploader:hover svg {
+.uploader article:hover svg {
     fill: var(--primary);
 }
 
@@ -153,11 +154,14 @@ footer p{
     text-align: center;
     --color: white;
 }
-footer a{
+footer .copy i{
+
+}
+footer .copy a{
     color: white;
     text-decoration: none;
     font-weight: 600;
 }
-footer a:hover{
+footer .copy a:hover{
     text-decoration: underline;
 }

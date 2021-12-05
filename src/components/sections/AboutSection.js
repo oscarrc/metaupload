@@ -10,7 +10,7 @@ const About = () => {
                     IPFS (Inter-Planetary File System) is a distributed system for storing and accesing files in a p2p enviroment. <br />
                     What that means is that IPFS makes it <strong>harder to censor</strong> content and supports a <strong>resilient internet</strong>.
                 </p>
-        </div>
+            </div>
         </section>
     )
 }

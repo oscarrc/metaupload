@@ -16,7 +16,7 @@ const Footer = () => {
             </div>
             </div>
             <div className="container-fluid">
-            <p>Made with love by <a className="contrast" href="https://oscarrc.me" target="_BLANK" rel="noreferrer">Oscar R.C.</a></p>
+            <p className="copy">Made with ❤️ by <a href="https://oscarrc.me" target="_BLANK" rel="noreferrer">Oscar R.C.</a></p>
             </div>
         </footer>
     )
