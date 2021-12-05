@@ -88,8 +88,8 @@ section#about .container {
     --color: white
 }
 
-.hero p {
---color: #bbc6ce
+.hero h6 {
+    --color: var(--primary-inverse)
 }
 
 /* Uploader */
@@ -130,6 +130,12 @@ section#about .container {
 .uploader article:hover svg, .uploader article span.active svg {
     fill: var(--primary);
 }
+.uploader ul li{
+    text-align: left;
+    list-style-type: none;
+    font-size: 0.75em
+}
+
 
 /* FOOTER */
 footer {

@@ -2,7 +2,7 @@ const About = () => {
     return (
         <section id="about">
             <div className="container">                
-                <h2>About Us</h2>
+                <h2>About</h2>
                 <p>
                     Metaupload&trade; is an anonymous, fully <strong>decentralized</strong>, file sharing service based on IPFS. All files are hashed and encrypted on upload an a decryption key is needed to acces those files again.
                 </p>
