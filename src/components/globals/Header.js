@@ -14,7 +14,7 @@ const Header = () => {
                 </li>
             </ul>
             <ul>
-                <li><button onClick={toggleTheme} className="round" >{ themeState.dark ? '☀' : '🌙'}</button></li>
+                <li><button onClick={toggleTheme} className="round">{ themeState.dark ? '☀' : '🌙'}</button></li>
             </ul>
             </nav>
         </header>
