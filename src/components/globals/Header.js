@@ -1,6 +1,10 @@
+import { useTheme } from "../../contexts/themeContext";
+
 const Header = () => {
+    const { themeState } = useTheme();
+    
     return (
-        <header className="">
+        <header className={ themeState.waves ? 'waves' : '' }>
             <nav className="container-fluid">
             <ul>
                 <li>

@@ -1,37 +1,40 @@
-import { createContext, useContext, useState } from 'react'
+import { createContext, useContext, useEffect, useReducer } from 'react'
 
 const ThemeContext = createContext();
 
 const themeReducer = (state, action) => {
-    switch (action.type) {
+    switch (action?.type) {
         case 'setTheme': {
             return {
                 ...state,
-                theme: action.payload
+                dark: action.payload === 'dark'
             } 
         }
         case 'toggleTheme': {
           return {
               ...state,
-              theme: state.theme === 'dark' ? 'light' : ' dark'
+              dark: !state.dark
           }          
         }
-        case 'toggleWaves': {
+        case 'setWaves': {
             return {
                 ...state,
-                waves: !state.waves
+                waves: !action.payload
             }          
         }
         default:
-            break
+            return state;
     }
 }
 
 const ThemeProvider = ({children}) => {
-    const [state, dispatch] = useState(themeReducer, { theme: 'dark', waves: false});
-    const value = {state, dispatch}
+    const [themeState, themeDispatch] = useReducer(themeReducer, { dark: true, waves: false});
+    
+    useEffect(() => {
+        document.documentElement.setAttribute('data-theme', themeState.dark ? 'dark' : 'light')
+    }, [themeState.dark])
 
-    return <ThemeContext.Provider value={value}>{ children }</ ThemeContext.Provider>
+    return <ThemeContext.Provider value={{themeState, themeDispatch}}>{ children }</ ThemeContext.Provider>
 }
 
 const useTheme = () => {

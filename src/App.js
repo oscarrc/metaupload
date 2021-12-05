@@ -7,7 +7,7 @@ import { ThemeProvider } from './contexts/themeContext';
 
 const Home = lazy(() => import('./views/Home'));
 const Download = lazy(() => import('./views/Download'));
-// document.documentElement.setAttribute('data-theme', 'light')
+
 const App = () => {
   return (
     <Router>

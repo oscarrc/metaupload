@@ -3,7 +3,7 @@ import {ReactComponent as DragAndDropIcon} from '../../assets/icons/draganddrop.
 
 const Uploader = () => {
     return (
-        <article class="uploader">
+        <article className="uploader">
             <span>                
                 <DragAndDropIcon />
                 <small>Click or drag to upload</small>
