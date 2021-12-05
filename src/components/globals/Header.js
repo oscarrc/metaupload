@@ -1,7 +1,9 @@
 import { useTheme } from "../../contexts/themeContext";
 
 const Header = () => {
-    const { themeState } = useTheme();
+    const { themeState, themeDispatch } = useTheme();
+
+    const toggleTheme = () => themeDispatch({type:"toggleTheme"})
     
     return (
         <header className={ themeState.waves ? 'waves' : '' }>
@@ -12,7 +14,7 @@ const Header = () => {
                 </li>
             </ul>
             <ul>
-                <li><a href="#support" className="outline contrast" role="button">Support us</a></li>
+                <li><button onClick={toggleTheme} className="round" >{ themeState.dark ? '☀' : '🌙'}</button></li>
             </ul>
             </nav>
         </header>

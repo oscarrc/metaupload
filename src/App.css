@@ -17,6 +17,12 @@ main {
     flex: 1;
 }
 
+/* Buttons */
+button.round, a[role=button].round{
+    border-radius: 50%;
+    padding: calc(var(--form-element-spacing-vertical) / 2) calc(var(--form-element-spacing-vertical) / 2.7)
+}
+
 /* Header */
 header{    
     z-index: 1;
