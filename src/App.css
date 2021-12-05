@@ -118,16 +118,16 @@ section#about .container {
     border-radius: var(--border-radius);
     width: 100%;
 }
-.uploader article:hover span{
+.uploader article:hover span, .uploader article span.active{
     border-color: var(--primary)
 }
 .uploader article small {
     display: block;
 }
-.uploader article:hover small {
+.uploader article:hover small, .uploader article span.active small {
     color: var(--primary);
 }
-.uploader article:hover svg {
+.uploader article:hover svg, .uploader article span.active svg {
     fill: var(--primary);
 }
 

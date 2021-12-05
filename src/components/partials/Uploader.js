@@ -21,10 +21,10 @@ const Uploader = () => {
                             <li key={index}>{file.path}</li>
                         )}
                     </ul> :
-                    <>                
+                    <span className={ isDragActive ? 'active' : ''}>                
                         <DragAndDropIcon />
                         <small>{isDragActive ? 'Drop files here' : 'Click or drag to upload'}</small>
-                    </>
+                    </span>
                 }
             </article>
         </div>
