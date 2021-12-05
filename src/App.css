@@ -1,0 +1,126 @@
+@import '@picocss/pico/css/pico.css';
+
+/* BASE STYLES */
+#root { min-height: 100vh; }
+:root {
+    --primary: #BF371F  !important;
+    --primary-hover: #b75543 !important;
+    --contrast: #ddca93 !important;
+    --contrast-hover: white !important;
+}
+.wrapper {
+    display: flex;
+    flex-flow: column;
+    min-height: 100vh;
+}
+main {
+    flex: 1;
+}
+
+/* Header */
+header{    
+    z-index: 1;
+    position: fixed;
+    width: 100%;
+}
+nav button, a[role=button]{
+    margin-right: calc(var(--typography-spacing-vertical)/ 4);
+    padding: calc(var(--form-element-spacing-vertical) / 2) var(--form-element-spacing-horizontal);
+}
+header:not(.waves){
+    background-color: #bf371f;
+}
+header.waves {
+     border-color: transparent;
+    -webkit-transition: all 0.5s linear;
+    -o-transition: all 0.5s linear;
+    transition: all 0.5s linear;
+    background-image: url(assets/img/wave-header.svg);
+    background-position: 0 90%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding-bottom: 30px;
+}
+
+/* HOME */
+
+/* About */
+#about {
+    padding: 120px 0;
+}
+#about h2 {
+    color: var(--primary);
+}
+#about h2:after{
+    content: "...";
+    color: var(--primary);
+    display: block;
+}
+section#about .container {
+    text-align: center;
+}
+
+/* Upload Hero */
+.hero{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 75vh;
+  }
+  .hero.background-image-container {
+    text-align: center;
+    background-image: url('assets/img/wave-hero-background.svg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: bottom;
+  }
+  .hero .grid div {
+    position: relative;
+  }
+
+  .hero h1 {
+    --color: white
+  }
+
+  .hero p {
+    --color: #bbc6ce
+  }
+
+/* Uploader */
+article.uploader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    width: 100%;
+    min-height: 25vh;
+    top: 100%;
+    cursor: pointer;
+}
+
+article.uploader:hover small {
+    color: var(--primary);
+}
+
+/* FOOTER */
+footer {
+    background-image: url(assets/img/wave-footer.svg);
+    padding-top: 60px;
+    margin-top: 30px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: top;
+}
+footer.grid{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+footer p{
+    border-top: 1px solid var(--contrast);
+    padding: var(--typography-spacing-vertical) 0;
+    margin: 0;
+    text-align: center;
+    --color: white;
+}

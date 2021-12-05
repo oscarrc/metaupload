@@ -1,6 +1,6 @@
 const Uploader = () => {
     return (
-        <article>
+        <article class="uploader">
             <small>Click or drag to upload</small>
         </article>
     )
