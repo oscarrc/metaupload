@@ -1,8 +1,7 @@
-import Uploader from "../partials/Uploader"
 import useInView from "react-cool-inview";
 import { useTheme } from "../../contexts/themeContext";
 
-const UploadHero = () => {
+const FilesHero = ({title, subtitle, children}) => {
     const { themeDispatch } = useTheme();
     
     const { observe } = useInView({
@@ -16,10 +15,10 @@ const UploadHero = () => {
             <div className="fluid-container">
                 <div className="grid">
                     <div>
-                        <h1>DECENTRALIZED FILE SHARING</h1>
-                        <p>Drag an drop files below and start sharing</p>
+                        <h1>{title}</h1>
+                        <p>{subtitle}</p>
                         <br />  
-                        <Uploader />        
+                        { children }     
                     </div>                    
                 </div>
             </div>
@@ -27,4 +26,4 @@ const UploadHero = () => {
     )
 }
 
-export default UploadHero;
+export default FilesHero;
