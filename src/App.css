@@ -7,6 +7,7 @@
     --primary-hover: #b75543 !important;
     --contrast: #ddca93 !important;
     --contrast-hover: white !important;
+    --variation: rgba(196, 196, 196, .15);
 }
 .wrapper {
     display: flex;
@@ -16,6 +17,7 @@
 main {
     flex: 1;
 }
+
 
 /* Buttons */
 button.round, a[role=button].round{
@@ -50,20 +52,27 @@ header.waves {
 
 /* HOME */
 
-/* About */
-#about {
-    padding: 120px 0;
+/* Sections */
+body section:last-child{
+    padding-bottom: var(--block-spacing-vertical);
 }
-#about h2 {
+section {
+    padding-top: var(--block-spacing-vertical);
+}
+section h2 {
     color: var(--primary);
 }
-#about h2:after{
+section h2:after{
     content: "...";
     color: var(--primary);
     display: block;
 }
-section#about .container {
+section .container {
     text-align: center;
+}
+
+section.variation {
+    background-color: var(--variation);
 }
 
 /* Upload Hero */

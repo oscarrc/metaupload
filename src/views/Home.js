@@ -1,6 +1,7 @@
 import FilesHero from '../components/heros/FilesHero'
 import Uploader from '../components/partials/Uploader'
 import About from '../components/sections/AboutSection'
+import HowTo from '../components/sections/HowToSection'
 
 const Home = () => {
     return (
@@ -9,6 +10,7 @@ const Home = () => {
                 <Uploader />
             </FilesHero>
             <About />
+            <HowTo />
         </div>
     )
 }
