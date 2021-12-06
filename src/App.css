@@ -53,11 +53,8 @@ header.waves {
 /* HOME */
 
 /* Sections */
-body section:last-child{
-    padding-bottom: var(--block-spacing-vertical);
-}
 section {
-    padding-top: var(--block-spacing-vertical);
+    padding: var(--block-spacing-vertical) 0;    
 }
 section h2 {
     color: var(--primary);
@@ -66,6 +63,9 @@ section h2:after{
     content: "...";
     color: var(--primary);
     display: block;
+}
+section img {
+    max-width: 25vw;
 }
 section .container {
     text-align: center;

@@ -1,6 +1,8 @@
 import FilesHero from '../components/heros/FilesHero'
 import Downloader from '../components/partials/Downloader'
 import About from '../components/sections/AboutSection'
+import HowTo from '../components/sections/HowToSection'
+import PoweredBy from '../components/sections/PoweredBy'
 
 const Download = () => {
     return (
@@ -9,6 +11,8 @@ const Download = () => {
                 <Downloader />
             </FilesHero>
             <About />
+            <HowTo />
+            <PoweredBy />
         </div>
     )
 }
