@@ -64,8 +64,25 @@ section h2:after{
     color: var(--primary);
     display: block;
 }
-section img {
-    max-width: 25vw;
+
+section a img {
+    max-width: 80vw;
+}
+@media (min-width: 768px) {
+    section a img {
+        max-width: 60vw;
+    }
+}
+@media (min-width: 992px) {
+    section a img {
+        max-width: 40vw;
+    }
+}
+
+@media (min-width: 1200px) {
+    section a img {
+        max-width: 20vw;
+    }
 }
 section .container {
     text-align: center;
@@ -168,9 +185,6 @@ footer p{
     margin-top: var(--typography-spacing-vertical);
     text-align: center;
     --color: white;
-}
-footer .copy i{
-
 }
 footer .copy a{
     color: white;
