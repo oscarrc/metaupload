@@ -8,34 +8,35 @@ const Uploader = () => {
     const { ipfs, isIpfsReady } = useIPFS();
     const { cid } = useParams();
     const [ files, setFiles ] = useState([]);
+    const [ ready, setReady ] = useState(false)
 
     const getData = useCallback(async (cid) => {
         const data = ipfs.ls(cid);
         let files = [];
+        
         for await (const file of data) {
             files.push(file)
+            console.log(file)
         }
-        console.log(files)
+        
         setFiles(files);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+        setTimeout( () => setReady(true), 500)
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [ipfs]);
 
-    const getFile = async (path, name) => {
-        console.log(path)
-        const chunks = []
+    const getFile = async (file) => {
+        console.log(file)
+        let chunks = []
 
-        for await (const chunk of ipfs.get(path)) {              
-            console.log(chunk.content)
+        for await (const chunk of ipfs.get(file.path)) {              
             chunks.push(chunk)
         }
 
         const blob = new Blob([chunks], { type: 'application/octet-stream' });
         let a = document.createElement('a');
         a.href = window.URL.createObjectURL(blob);
-        a.download = name;
+        a.download = 'test.txt';
         a.click();
-
-        console.log(blob)
     }
 
     useEffect(() => {
@@ -44,13 +45,13 @@ const Uploader = () => {
 
     return (
         <div className="downloader">
-            <article aria-busy={ !files.length || !isIpfsReady }>
+            <article aria-busy={ !isIpfsReady }>
                 { isIpfsReady ? 
                     <span>
-                        { files.length ?
+                        { files.length > 0 && ready ?
                             <ul>
                                 {files.map( (file,index) => 
-                                    <li onClick={ () => getFile(file.path, file.name) } role="button" key={index} data-type="file">{file.name}</li>
+                                    <li onClick={ () => getFile(file) } role="button" key={index} data-type="file">{file.name}</li>
                                 )}
                             </ul> :
                             <p>There are no files available for this CID</p>

@@ -8,10 +8,32 @@ const Uploader = () => {
     const { ipfs, isIpfsReady, ipfsInitError } = useIPFS();
 
     const onDrop =  async acceptedFiles => {
-        const results = ipfs.addAll(acceptedFiles, {wrapWithDirectory: true});
+        // console.log(acceptedFiles)
+        // const results = ipfs.addAll(acceptedFiles, {wrapWithDirectory: true});
+        // for await (const result of results) {
+        //     console.log(result)
+        // }
+        // setFiles(files.concat(acceptedFiles));
+        let promises = [];
+
+        for(const file of acceptedFiles) {
+            let filePromise = new Promise(resolve => {
+                let reader = new FileReader();
+                reader.readAsArrayBuffer(file);
+                reader.onload = () => resolve({path: file.path, content: reader.result});
+            })
+
+            promises.push(filePromise);
+        }
+        
+        const files = await Promise.all(promises)
+        const results = ipfs.addAll(files, {wrapWithDirectory: true});
+
         for await (const result of results) {
+            ipfs.pin.addAll(results)
             console.log(result)
         }
+
         setFiles(files.concat(acceptedFiles));
     }
     
