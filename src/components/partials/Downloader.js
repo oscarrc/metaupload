@@ -24,16 +24,22 @@ const Uploader = () => {
     }, [isIpfsReady, cid, getData])
 
     return (
-        <article className="downloader" aria-busy={ !files.length || !isIpfsReady }>
-            { files.length ?
-                <ul>
-                    {files.map( (file,index) => 
-                        <li key={index}>{file.name}</li>
-                    )}
-                </ul> :
-                null
-            }
-        </article>
+        <div className="downloader">
+            <article aria-busy={ !files.length || !isIpfsReady }>
+                { isIpfsReady ? 
+                    <span>
+                        { files.length ?
+                            <ul>
+                                {files.map( (file,index) => 
+                                    <li key={index}>{file.name}</li>
+                                )}
+                            </ul> :
+                            null
+                        }
+                    </span> :
+                    null }
+            </article>
+        </div>
     )
 }
 

@@ -131,13 +131,13 @@ section.variation {
     --color: var(--primary-inverse)
 }
 
-/* Uploader */
-.uploader {
+/* Uploader / Downloader */
+.uploader, .downloader {
     position: absolute;
     top: 100%;
     width: 100%;
 }
-.uploader article {
+.uploader article, .downloader article {
     display: flex;
     flex-flow: column;
     justify-content: center;
@@ -146,12 +146,12 @@ section.variation {
     cursor: pointer;
     transition: color var(--transition), border-color var(--transition);
 }
-.uploader article svg {
+.uploader article svg, .downloader article svg {
     width: 50px;
     height: auto;
     margin: var(--spacing)
 }
-.uploader article span {
+.uploader article span, .downloader article span {
     padding: var(--block-spacing-vertical) 0;
     border: 1px dashed var(--color);
     border-radius: var(--border-radius);
@@ -169,7 +169,7 @@ section.variation {
 .uploader article:hover svg, .uploader article span.active svg {
     fill: var(--primary);
 }
-.uploader ul li{
+.uploader ul li, .downloader ul li{
     text-align: left;
     list-style-type: none;
     font-size: 0.75em
