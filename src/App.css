@@ -35,27 +35,6 @@ main {
     height: 100vh;
 }
 
-/* List */
-ul li[data-type=file] {
-    list-style-type: none;
-    text-align: left;
-    font-size: 0.75em;
-    vertical-align: bottom;
-}
-
-ul li[data-type=file]::before {
-    content: '';
-    display: inline-block;
-    height: 20px;
-    width: 18px;
-    margin-right: 5px;
-    background-position: 0 0;
-    background-repeat: no-repeat;
-    background-size: contain;
-    background-image: var(--icon-file);
-    color: var(--color);
-}
-
 /* Buttons */
 button.round, a[role=button].round{
     border-radius: 50%;
@@ -195,6 +174,31 @@ section.variation {
 }
 .uploader article:hover svg, .uploader article span.active svg {
     fill: var(--primary);
+}
+
+/* Files list */
+
+
+/* List */
+ul li[data-type=file] {
+    list-style-type: none;
+    text-align: left;
+    font-size: 0.75em;
+    vertical-align: bottom;
+    cursor: pointer;
+}
+
+ul li[data-type=file]::before {
+    content: '';
+    display: inline-block;
+    height: 20px;
+    width: 18px;
+    margin-right: 5px;
+    background-position: 0 0;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-image: var(--icon-file);
+    color: var(--color);
 }
 
 /* FOOTER */

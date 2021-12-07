@@ -15,9 +15,28 @@ const Uploader = () => {
         for await (const file of data) {
             files.push(file)
         }
+        console.log(files)
         setFiles(files);
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [ipfs]);
+
+    const getFile = async (path, name) => {
+        console.log(path)
+        const chunks = []
+
+        for await (const chunk of ipfs.get(path)) {              
+            console.log(chunk.content)
+            chunks.push(chunk)
+        }
+
+        const blob = new Blob([chunks], { type: 'application/octet-stream' });
+        let a = document.createElement('a');
+        a.href = window.URL.createObjectURL(blob);
+        a.download = name;
+        a.click();
+
+        console.log(blob)
+    }
 
     useEffect(() => {
         if(isIpfsReady) getData(cid)
@@ -31,10 +50,10 @@ const Uploader = () => {
                         { files.length ?
                             <ul>
                                 {files.map( (file,index) => 
-                                    <li key={index} data-type="file">{file.name}</li>
+                                    <li onClick={ () => getFile(file.path, file.name) } role="button" key={index} data-type="file">{file.name}</li>
                                 )}
                             </ul> :
-                            null
+                            <p>There are no files available for this CID</p>
                         }
                     </span> :
                     null }
