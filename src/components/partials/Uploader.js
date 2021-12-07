@@ -1,20 +1,25 @@
 import {ReactComponent as DragAndDropIcon} from '../../assets/icons/draganddrop.svg';
 import {useDropzone} from 'react-dropzone'
-import { useCallback, useState } from 'react';
+import { useState } from 'react';
+import { useIPFS } from './../../hooks/useIPFS';
 
 const Uploader = () => {
     const [ files, setFiles ] = useState([]);
+    const { ipfs, isIpfsReady, ipfsInitError } = useIPFS();
 
-    const onDrop =  useCallback(acceptedFiles => {
-        setFiles(files.concat(acceptedFiles))
-    }, [files])
-
+    const onDrop =  async acceptedFiles => {
+        const results = await ipfs.add(acceptedFiles[0]);
+        console.log(results)
+        setFiles(files.concat(acceptedFiles));
+    }
+    
     const {getRootProps, getInputProps, isDragActive} = useDropzone({onDrop})
 
     return (
         <div className="uploader">   
-            <article  {...getRootProps()}>
+            <article  {...getRootProps()} aria-busy={!isIpfsReady}>
                 <input {...getInputProps()} />
+                { isIpfsReady && !ipfsInitError ? 
                     <span className={ isDragActive ? 'active' : ''}>                            
                         { files.length ?
                             <ul>
@@ -27,7 +32,9 @@ const Uploader = () => {
                                 <small>{isDragActive ? 'Drop files here' : 'Click or drag to upload'}</small>
                             </>
                         }
-                    </span>
+                    </span> :
+                    null
+                }
             </article>
         </div>
     )

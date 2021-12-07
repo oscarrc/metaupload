@@ -1,4 +1,4 @@
-import { useTheme } from "../../contexts/themeContext";
+import { useTheme } from "../../hooks/useThemeContext";
 
 const Header = () => {
     const { themeState, themeDispatch } = useTheme();

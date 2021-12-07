@@ -1,5 +1,5 @@
 import useInView from "react-cool-inview";
-import { useTheme } from "../../contexts/themeContext";
+import { useTheme } from "../../hooks/useThemeContext";
 
 const FilesHero = ({title, subtitle, children}) => {
     const { themeDispatch } = useTheme();

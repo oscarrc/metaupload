@@ -1,9 +1,12 @@
 import { Suspense, lazy } from 'react';
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import './App.css';
+import { ThemeProvider } from './hooks/useThemeContext';
 import Header from './components/globals/Header';
 import Footer from './components/globals/Footer';
-import { ThemeProvider } from './contexts/themeContext';
+
+import './App.css';
+
+import Loading from './views/Loading';
 
 const Home = lazy(() => import('./views/Home'));
 const Download = lazy(() => import('./views/Download'));
@@ -11,13 +14,13 @@ const Download = lazy(() => import('./views/Download'));
 const App = () => {
   return (
     <Router>
-      <Suspense fallback={<article aria-busy="true"></article>}>
+      <Suspense fallback={<Loading />}>
         <ThemeProvider>
           <Header />
           <main>
             <Routes>        
               <Route exact path="/" element={<Home />} />
-              <Route path="/download/:file" element={<Download />} />
+              <Route path="/download/:cid" element={<Download />} />
             </Routes>
           </main>
           <Footer />

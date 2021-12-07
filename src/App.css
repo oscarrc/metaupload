@@ -18,6 +18,16 @@ main {
     flex: 1;
 }
 
+/* Loader */
+.loader {
+    position: fixed;
+    top: 0;	
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+}
 
 /* Buttons */
 button.round, a[role=button].round{
@@ -55,6 +65,9 @@ header.waves {
 /* Sections */
 section {
     padding: var(--block-spacing-vertical) 0;    
+}
+section:first-of-type {
+    padding-top: calc(var(--form-element-spacing-vertical) * 8);
 }
 section h2 {
     color: var(--primary);
