@@ -31,7 +31,7 @@ const Uploader = () => {
                         { files.length ?
                             <ul>
                                 {files.map( (file,index) => 
-                                    <li key={index}>{file.name}</li>
+                                    <li key={index} data-type="file">{file.name}</li>
                                 )}
                             </ul> :
                             null

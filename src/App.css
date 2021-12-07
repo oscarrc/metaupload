@@ -1,7 +1,6 @@
 @import '@picocss/pico/css/pico.css';
 
 /* BASE STYLES */
-#root { min-height: 100vh; }
 :root {
     --primary: #BF371F  !important;
     --primary-hover: #b75543 !important;
@@ -9,13 +8,20 @@
     --contrast-hover: white !important;
     --variation: rgba(196, 196, 196, .15);
 }
+[data-theme=light], :root:not([data-theme=dark]) {
+    --icon-file: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='currentColor' %3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z' /%3E%3C/svg%3E");
+}
+[data-theme=dark], :root:not([data-theme=light]) {
+    --icon-file: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='lightGray' %3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z' /%3E%3C/svg%3E")  
+}
+main {
+    flex: 1;
+}
+#root { min-height: 100vh; }
 .wrapper {
     display: flex;
     flex-flow: column;
     min-height: 100vh;
-}
-main {
-    flex: 1;
 }
 
 /* Loader */
@@ -27,6 +33,27 @@ main {
     align-items: center;
     width: 100vw;
     height: 100vh;
+}
+
+/* List */
+ul li[data-type=file] {
+    list-style-type: none;
+    text-align: left;
+    font-size: 0.75em;
+    vertical-align: bottom;
+}
+
+ul li[data-type=file]::before {
+    content: '';
+    display: inline-block;
+    height: 20px;
+    width: 18px;
+    margin-right: 5px;
+    background-position: 0 0;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-image: var(--icon-file);
+    color: var(--color);
 }
 
 /* Buttons */
@@ -169,12 +196,6 @@ section.variation {
 .uploader article:hover svg, .uploader article span.active svg {
     fill: var(--primary);
 }
-.uploader ul li, .downloader ul li{
-    text-align: left;
-    list-style-type: none;
-    font-size: 0.75em
-}
-
 
 /* FOOTER */
 footer {
