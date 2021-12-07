@@ -7,12 +7,16 @@ import { useCallback, useEffect, useState } from 'react';
 const Uploader = () => {
     const { ipfs, isIpfsReady } = useIPFS();
     const { cid } = useParams();
-    const [ files, setFiles ] = useState(null);
+    const [ files, setFiles ] = useState([]);
 
     const getData = useCallback(async (cid) => {
-        for await (const file of ipfs.ls(cid)) {
-            console.log(file)
+        const data = ipfs.ls(cid);
+        let files = [];
+        for await (const file of data) {
+            files.push(file)
         }
+        setFiles(files);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [ipfs]);
 
     useEffect(() => {
@@ -20,7 +24,15 @@ const Uploader = () => {
     }, [isIpfsReady, cid, getData])
 
     return (
-        <article className="downloader" aria-busy={ !files || !isIpfsReady }>
+        <article className="downloader" aria-busy={ !files.length || !isIpfsReady }>
+            { files.length ?
+                <ul>
+                    {files.map( (file,index) => 
+                        <li key={index}>{file.name}</li>
+                    )}
+                </ul> :
+                null
+            }
         </article>
     )
 }

@@ -8,8 +8,10 @@ const Uploader = () => {
     const { ipfs, isIpfsReady, ipfsInitError } = useIPFS();
 
     const onDrop =  async acceptedFiles => {
-        const results = await ipfs.add(acceptedFiles[0]);
-        console.log(results)
+        const results = ipfs.addAll(acceptedFiles, {wrapWithDirectory: true});
+        for await (const result of results) {
+            console.log(result)
+        }
         setFiles(files.concat(acceptedFiles));
     }
     

@@ -9,15 +9,15 @@ const useIPFS = () => {
 
   useEffect(() => {
     startIpfs()
-    return function cleanup () {
-      if (ipfs && ipfs.stop) {
-        console.log('Stopping IPFS')
-        ipfs.stop().catch(err => console.error(err))
-        ipfs = null
-        setIpfsReady(false)
-      }
-    }
-  }, [])
+    // return function cleanup () {
+    //   if (ipfs && ipfs.stop) {
+    //     console.log('Stopping IPFS')
+    //     ipfs.stop().catch(err => console.error(err))
+    //     ipfs = null
+    //     setIpfsReady(false)
+    //   }
+    // }
+  })
 
   async function startIpfs () {
     if (ipfs) {
