@@ -1,4 +1,5 @@
 import { useTheme } from "../../hooks/useThemeContext";
+import { Link } from "react-router-dom";
 
 const Header = () => {
     const { themeState, themeDispatch } = useTheme();
@@ -10,7 +11,9 @@ const Header = () => {
             <nav className="container-fluid">
             <ul>
                 <li>
-                    <img src="/img/logo.svg" width="300" height="80" alt="metaupload" />
+                    <Link to="/">
+                        <img src="/img/logo.svg" width="300" height="80" alt="metaupload" />
+                    </Link>
                 </li>
             </ul>
             <ul>
