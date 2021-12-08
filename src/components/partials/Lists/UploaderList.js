@@ -1,5 +1,4 @@
 import { Children, cloneElement, useCallback, useEffect, useState } from "react"
-import { Link } from "react-router-dom";
 import { ReactComponent as CopyIcon } from '../../../assets/icons/copy.svg';
 
 const List = ({ ipfs, children }) => {
@@ -52,16 +51,6 @@ const File = ({ ipfs, file }) => {
             { progress <= 100 && !cid ? <progress { ...( progress === 100 ? {ideterminate: "true"} : {value: progress} ) } max="100" >Uploading</progress> : null}
         </li>
     )
-}
-
-const Wrapper = ({cid, children}) => {
-    if (cid) return (
-        <Link to={`/download/${cid}`}> 
-            { children }
-        </Link>
-    )
-
-    return <>{ children }</>;
 }
 
 export { List, File }
