@@ -16,7 +16,7 @@ const Uploader = () => {
             <article {...getRootProps()} aria-busy={!isIpfsReady}>
                 <input {...getInputProps()} disabled={!isIpfsReady} />
                 { isIpfsReady && !ipfsInitError ? 
-                    <span className={ isDragActive ? 'active' : ''}>                            
+                    <div className={ isDragActive ? 'active' : ''}>                            
                         { files.length ?
                             <List ipfs={ipfs}>
                                 { files.map( file => <File key={file.path} file={file} /> ) }
@@ -26,7 +26,7 @@ const Uploader = () => {
                                 <small>{isDragActive ? 'Drop files here' : 'Click or drag to upload'}</small>
                             </>
                         }
-                    </span> :
+                    </div> :
                     null
                 }
             </article>

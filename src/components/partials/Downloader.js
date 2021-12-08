@@ -3,6 +3,7 @@
 import { useIPFS } from './../../hooks/useIPFS';
 import { useParams } from "react-router-dom";
 import { useCallback, useEffect, useState } from 'react';
+import { ReactComponent as DownloadIcon } from '../../assets/icons/download.svg';
 
 const Downloader = () => {
     const { ipfs, isIpfsReady } = useIPFS();
@@ -20,7 +21,7 @@ const Downloader = () => {
         }
         
         setFiles(files);
-        setTimeout( () => setReady(true), 500)
+        setTimeout( () => setReady(true))
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [ipfs]);
 
@@ -46,16 +47,23 @@ const Downloader = () => {
         <div className="downloader">
             <article aria-busy={ !isIpfsReady }>
                 { isIpfsReady ? 
-                    <span>
-                        { files.length > 0 && ready ?
+                    <div>
+                        { files.length >= 1 && ready ?
                             <ul>
                                 {files.map( (file,index) => 
-                                    <li onClick={ () => getFile(file) } role="button" key={index} data-type="file">{file.name}</li>
+                                    <li role="button" key={index} data-type="file">
+                                        <span>
+                                            <i>{file.name}</i>
+                                            <button onClick={ () => getFile(file) } className="outline">
+                                                <DownloadIcon />
+                                            </button>
+                                        </span>
+                                    </li>
                                 )}
                             </ul> :
                             <p>There are no files available for this CID</p>
                         }
-                    </span> :
+                    </div> :
                     null }
             </article>
         </div>

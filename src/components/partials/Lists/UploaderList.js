@@ -1,5 +1,6 @@
 import { Children, cloneElement, useCallback, useEffect, useState } from "react"
 import { Link } from "react-router-dom";
+import { ReactComponent as CopyIcon } from '../../../assets/icons/copy.svg';
 
 const List = ({ ipfs, children }) => {
     return (
@@ -17,6 +18,10 @@ const List = ({ ipfs, children }) => {
 const File = ({ ipfs, file }) => {
     const [ progress, setProgress ] = useState(0);
     const [ cid, setCid ] = useState('');
+    const copyToClipboard = (e) => {
+        e.stopPropagation();
+        navigator.clipboard.writeText(`${window.location.href}download/${cid}`)
+    }
 
     const addFile = useCallback(async (file) => {
         const addedFile = await ipfs.add({
@@ -33,13 +38,19 @@ const File = ({ ipfs, file }) => {
 
     useEffect(() => addFile(file), [addFile, file])
 
-    return (
-        <Wrapper cid={cid}>                                        
-            <li data-type="file">
-                {file.name}
-                { progress <= 100 && !cid ? <progress { ...( progress === 100 ? {ideterminate: "true"} : {value: progress} ) } max="100" >Uploading</progress> : null}
-            </li>
-        </Wrapper>
+    return (                                   
+        <li data-type="file">
+            <span>
+                <i>{file.name}</i> 
+                { cid ? 
+                    <button onClick={copyToClipboard} className="outline"  data-tooltip="Copy link">
+                        <CopyIcon />
+                    </button> : 
+                    null
+                }
+            </span>
+            { progress <= 100 && !cid ? <progress { ...( progress === 100 ? {ideterminate: "true"} : {value: progress} ) } max="100" >Uploading</progress> : null}
+        </li>
     )
 }
 
