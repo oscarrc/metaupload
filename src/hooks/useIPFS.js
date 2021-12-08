@@ -6,6 +6,9 @@ let ipfs = null
 const useIPFS = () => {
   const [isIpfsReady, setIpfsReady] = useState(Boolean(ipfs))
   const [ipfsInitError, setIpfsInitError] = useState(null)
+  const options = {
+    repo: 'metaupload'
+  }
 
   useEffect(() => {
     startIpfs()
@@ -28,7 +31,7 @@ const useIPFS = () => {
     } else {
       try {
         console.time('IPFS Started')
-        ipfs = await create()
+        ipfs = await create(options)
         console.timeEnd('IPFS Started')
       } catch (error) {
         console.error('IPFS init error:', error)

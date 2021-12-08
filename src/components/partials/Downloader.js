@@ -35,7 +35,7 @@ const Uploader = () => {
         const blob = new Blob([chunks], { type: 'application/octet-stream' });
         let a = document.createElement('a');
         a.href = window.URL.createObjectURL(blob);
-        a.download = 'test.txt';
+        a.download = file.name;
         a.click();
     }
 

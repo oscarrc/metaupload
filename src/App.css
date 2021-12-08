@@ -24,6 +24,13 @@ main {
     min-height: 100vh;
 }
 
+/* Animations */
+@keyframes fadeOut { 
+    0% { opacity: 1; display: block; } 
+    100% { opacity: 0; display: none; }
+}
+
+
 /* Loader */
 .loader {
     position: fixed;
@@ -162,6 +169,7 @@ section.variation {
     border: 1px dashed var(--color);
     border-radius: var(--border-radius);
     width: 100%;
+    flex: 1;
 }
 .uploader article:hover span, .uploader article span.active{
     border-color: var(--primary)
@@ -186,6 +194,9 @@ ul li[data-type=file] {
     font-size: 0.75em;
     vertical-align: bottom;
     cursor: pointer;
+    overflow-x: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 ul li[data-type=file]::before {
@@ -199,6 +210,18 @@ ul li[data-type=file]::before {
     background-size: contain;
     background-image: var(--icon-file);
     color: var(--color);
+}
+ul li[data-type=file] progress:not(.fadeOut){    
+    display: block;
+    margin-left: 22px;
+    margin-top: calc(var(--spacing) * 0.2);
+    width: calc(100% - 44px);
+    transition: all 500ms ease-in-out;
+}
+
+ul li[data-type=file] progress.fadeOut {
+    animation-name: fadeOut;
+    animation-delay: 2s;
 }
 
 /* FOOTER */
