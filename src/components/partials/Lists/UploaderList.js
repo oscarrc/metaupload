@@ -31,7 +31,7 @@ const File = ({ ipfs, file }) => {
             pin: true,
             progress: (bytesLoaded) => setProgress((bytesLoaded / file.size) * 100)
         })
-    
+        console.log(file)
         setCid(addedFile.cid)
     }, [ipfs])
 
@@ -48,7 +48,7 @@ const File = ({ ipfs, file }) => {
                     null
                 }
             </span>
-            { progress <= 100 && !cid ? <progress { ...( progress === 100 ? {ideterminate: "true"} : {value: progress} ) } max="100" >Uploading</progress> : null}
+            { progress <= 100 && !cid ? <progress { ...( progress === 100 ? {ideterminate: "true"} : {value: progress} ) } max="100" ></progress> : null}
         </li>
     )
 }
