@@ -267,7 +267,7 @@ footer nav{
 footer div{
     text-align: center;
 }
-@media (min-width: 768){
+@media (min-width: 992px){
     footer nav{
         justify-content: flex-end;
     }
