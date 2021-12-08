@@ -4,7 +4,7 @@ import { useIPFS } from './../../hooks/useIPFS';
 import { useParams } from "react-router-dom";
 import { useCallback, useEffect, useState } from 'react';
 
-const Uploader = () => {
+const Downloader = () => {
     const { ipfs, isIpfsReady } = useIPFS();
     const { cid } = useParams();
     const [ files, setFiles ] = useState([]);
@@ -25,14 +25,13 @@ const Uploader = () => {
     }, [ipfs]);
 
     const getFile = async (file) => {
-        console.log(file)
         let chunks = []
 
-        for await (const chunk of ipfs.get(file.path)) {              
-            chunks.push(chunk)
+        for await (const chunk of ipfs.cat(file.path)) {              
+            chunks = chunks.concat(chunk)
         }
 
-        const blob = new Blob([chunks], { type: 'application/octet-stream' });
+        const blob = new Blob(chunks, { type: 'application/octet-stream' });
         let a = document.createElement('a');
         a.href = window.URL.createObjectURL(blob);
         a.download = file.name;
@@ -63,4 +62,4 @@ const Uploader = () => {
     )
 }
 
-export default Uploader;
+export default Downloader;

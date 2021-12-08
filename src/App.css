@@ -198,7 +198,6 @@ ul li[data-type=file] {
     text-overflow: ellipsis;
     white-space: nowrap;
 }
-
 ul li[data-type=file]::before {
     content: '';
     display: inline-block;
@@ -211,17 +210,12 @@ ul li[data-type=file]::before {
     background-image: var(--icon-file);
     color: var(--color);
 }
-ul li[data-type=file] progress:not(.fadeOut){    
+ul li[data-type=file] progress{    
     display: block;
     margin-left: 22px;
     margin-top: calc(var(--spacing) * 0.2);
     width: calc(100% - 44px);
     transition: all 500ms ease-in-out;
-}
-
-ul li[data-type=file] progress.fadeOut {
-    animation-name: fadeOut;
-    animation-delay: 2s;
 }
 
 /* FOOTER */

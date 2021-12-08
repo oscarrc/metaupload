@@ -37,7 +37,7 @@ const File = ({ ipfs, file }) => {
         <Wrapper cid={cid}>                                        
             <li data-type="file">
                 {file.name}
-                <progress className={ progress >= 100 && cid ? 'fadeOut' : ''} value={ progress } max="100"></progress>
+                { progress <= 100 && !cid ? <progress { ...( progress === 100 ? {ideterminate: "true"} : {value: progress} ) } max="100" >Uploading</progress> : null}
             </li>
         </Wrapper>
     )

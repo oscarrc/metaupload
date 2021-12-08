@@ -2,7 +2,7 @@ import { ReactComponent as DragAndDropIcon } from '../../assets/icons/draganddro
 import { useDropzone } from 'react-dropzone'
 import { useState } from 'react';
 import { useIPFS } from './../../hooks/useIPFS';
-import { List, File } from "./UploaderList";
+import { List, File } from "./Lists/UploaderList";
 
 const Uploader = () => {
     const [ files, setFiles ] = useState([]);
@@ -13,8 +13,8 @@ const Uploader = () => {
 
     return (
         <div className="uploader">   
-            <article  {...getRootProps()} aria-busy={!isIpfsReady}>
-                <input {...getInputProps()} />
+            <article {...getRootProps()} aria-busy={!isIpfsReady}>
+                <input {...getInputProps()} disabled={!isIpfsReady} />
                 { isIpfsReady && !ipfsInitError ? 
                     <span className={ isDragActive ? 'active' : ''}>                            
                         { files.length ?

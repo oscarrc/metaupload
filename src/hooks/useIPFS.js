@@ -7,7 +7,6 @@ const useIPFS = () => {
   const [isIpfsReady, setIpfsReady] = useState(Boolean(ipfs))
   const [ipfsInitError, setIpfsInitError] = useState(null)
   const options = {
-    repo: 'metaupload'
   }
 
   useEffect(() => {
