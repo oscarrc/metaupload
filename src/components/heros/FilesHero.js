@@ -16,7 +16,7 @@ const FilesHero = ({title, subtitle, children}) => {
                 <div className="grid">
                     <div>
                         <h1>{title}</h1>
-                        <h6>{subtitle}</h6>
+                        <h6 className="contrast">{subtitle}</h6>
                         <br />  
                         { children }     
                     </div>                    

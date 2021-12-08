@@ -92,16 +92,16 @@ section h2:after{
 }
 
 section a img {
-    max-width: 80vw;
+    max-width: 60vw;
 }
 @media (min-width: 768px) {
     section a img {
-        max-width: 60vw;
+        max-width: 40vw;
     }
 }
 @media (min-width: 992px) {
     section a img {
-        max-width: 40vw;
+        max-width: 30vw;
     }
 }
 
@@ -141,7 +141,7 @@ section.variation {
 }
 
 .hero h6 {
-    --color: var(--primary-inverse)
+    --color: var(--contrast)
 }
 
 /* Uploader / Downloader */
@@ -260,6 +260,20 @@ footer.grid{
     align-items: center;
     justify-content: space-around;
     flex-wrap: wrap;
+}
+footer nav{
+    justify-content: center;
+}
+footer div{
+    text-align: center;
+}
+@media (min-width: 768){
+    footer nav{
+        justify-content: flex-end;
+    }
+    footer div{
+        text-align: left;
+    }
 }
 footer p{
     border-top: 1px solid var(--contrast);

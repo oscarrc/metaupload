@@ -17,7 +17,6 @@ const Downloader = () => {
         
         for await (const file of data) {
             files.push(file)
-            console.log(file)
         }
         
         setFiles(files);
