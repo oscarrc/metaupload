@@ -219,7 +219,9 @@ ul li[data-type=file] span {
     justify-content: space-between;
 }
 ul li[data-type=file] span i{
-    flex: 1
+    flex: 1;
+    overflow-x: hidden;
+    text-overflow: ellipsis;
 }
 ul li[data-type=file] span button{
     position: relative;

@@ -7,7 +7,7 @@ import PoweredBy from '../components/sections/PoweredBy'
 const Home = () => {
     return (
         <div>
-            <FilesHero title="DECENTRALIZED FILE SHARING" subtitle="Drag an drop files below and start sharing">
+            <FilesHero title="DECENTRALIZED FILE SHARING" subtitle="Drag and drop files below and start sharing">
                 <Uploader />
             </FilesHero>
             <About />
