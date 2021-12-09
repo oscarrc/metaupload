@@ -5,7 +5,9 @@
     --primary: #BF371F  !important;
     --primary-hover: #b75543 !important;
     --contrast: #ddca93 !important;
+    --contrast: #ddca93 !important;
     --contrast-hover: white !important;
+    --contrast-inverse: #000 !important;
     --variation: rgba(196, 196, 196, .15);
 }
 [data-theme=light], :root:not([data-theme=dark]) {
