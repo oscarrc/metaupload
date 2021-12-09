@@ -12,8 +12,6 @@ const Downloader = () => {
     const [ ready, setReady ] = useState(false)
 
     const getData = useCallback(async (cid) => {
-        const peers = await ipfs.swarm.peers()
-        console.log(peers)
         const data = ipfs.ls(cid);
         let files = [];
         

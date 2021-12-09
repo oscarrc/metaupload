@@ -29,6 +29,8 @@ const File = ({ ipfs, file }) => {
             donwloaded += chunk.length;
             setProgress((donwloaded / file.size) * 100)
         }
+        
+        ipfs.pin.add(file.path);
 
         const blob = new Blob(chunks, { type: 'application/octet-stream' });
         let a = document.createElement('a');
