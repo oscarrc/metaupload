@@ -6,8 +6,8 @@ const FilesHero = ({title, subtitle, children}) => {
     
     const { observe } = useInView({
         threshold: 0.25,
-        onEnter: () => themeDispatch({type: "setWaves", payload: true}),
-        onLeave: () => themeDispatch({type: "setWaves", payload: false})
+        onEnter: () => themeDispatch({type: "setWaves", payload: false}),
+        onLeave: () => themeDispatch({type: "setWaves", payload: true})
     })
 
     return (

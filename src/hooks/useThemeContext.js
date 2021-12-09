@@ -19,7 +19,7 @@ const themeReducer = (state, action) => {
         case 'setWaves': {
             return {
                 ...state,
-                waves: !action.payload
+                waves: action.payload
             }          
         }
         default:

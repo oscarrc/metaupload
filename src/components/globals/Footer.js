@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 const Footer = () => {
     return (
         <footer>
@@ -9,8 +11,8 @@ const Footer = () => {
                 <nav>
                     <ul>
                         <li><a className="contrast" href="https://ko-fi.com/oscarrc" target="_BLANK" rel="noreferrer">Buy me a coffee</a></li>
-                        <li><a className="contrast" href="/terms">Terms and conditions</a></li>
-                        <li><a className="contrast" href="/privacy">Privacy Policy</a></li>
+                        <li><Link className="contrast" to="/terms">Terms and conditions</Link></li>
+                        <li><Link className="contrast" to="/privacy">Privacy Policy</Link></li>
                     </ul>
                 </nav>
             </div>

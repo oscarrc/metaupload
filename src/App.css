@@ -17,8 +17,8 @@
 main {
     flex: 1;
 }
-#root { min-height: 100vh; }
-.wrapper {
+#root { 
+    min-height: 100vh;
     display: flex;
     flex-flow: column;
     min-height: 100vh;
@@ -78,6 +78,9 @@ header.waves {
 /* Sections */
 section {
     padding: var(--block-spacing-vertical) 0;    
+}
+section#policy{
+    margin-top: calc(var(--spacing) * 2);
 }
 section:first-of-type {
     padding-top: calc(var(--form-element-spacing-vertical) * 8);

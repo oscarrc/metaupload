@@ -10,6 +10,8 @@ import Loading from './views/Loading';
 
 const Home = lazy(() => import('./views/Home'));
 const Download = lazy(() => import('./views/Download'));
+const Privacy = lazy(() => import('./views/Privacy'));
+const Terms = lazy(() => import('./views/Terms'));
 
 const App = () => {
   return (
@@ -21,6 +23,8 @@ const App = () => {
             <Routes>        
               <Route exact path="/" element={<Home />} />
               <Route path="/download/:cid" element={<Download />} />
+              <Route path="/privacy" element={<Privacy />} />
+              <Route path="/terms" element={<Terms />} />
             </Routes>
           </main>
           <Footer />
