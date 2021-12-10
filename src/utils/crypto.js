@@ -1,5 +1,5 @@
 import { AES } from 'crypto-js'
-import { WordArray } from 'crypto-js/lib'
+import { lib } from 'crypto-js'
 
 const randomString = (length) => {
     const chars = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
@@ -14,7 +14,7 @@ const encryptFile = (file, key) => {
     let encrypted;
 
     reader.onload = () => {
-        encrypted = AES.encrypt(WordArray.create(reader.result), key).toString();
+        encrypted = AES.encrypt(lib.WordArray.create(reader.result), key).toString();
     }
 
     reader.readAsArrayBuffer(file);
