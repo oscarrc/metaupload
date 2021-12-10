@@ -1,12 +1,10 @@
-
-
 import { useIPFS } from './../../hooks/useIPFS';
 import { useParams } from "react-router-dom";
 import { useCallback, useEffect, useState } from 'react';
 import { List, File } from "./Lists/DownloaderList";
 
 const Downloader = () => {
-    const { ipfs, isIpfsReady } = useIPFS();
+    const { ipfs, isIpfsReady, ipfsInitError } = useIPFS();
     const { cid } = useParams();
     const [ files, setFiles ] = useState([]);
     const [ ready, setReady ] = useState(false)
@@ -31,7 +29,7 @@ const Downloader = () => {
     return (
         <div className="downloader">
             <article aria-busy={ !isIpfsReady }>
-                { isIpfsReady ? 
+                { isIpfsReady && !ipfsInitError ? 
                     <div>
                         { files.length >= 1 && ready ?
                             <List ipfs={ipfs}>
