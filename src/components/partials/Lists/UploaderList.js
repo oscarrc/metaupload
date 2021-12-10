@@ -31,7 +31,6 @@ const File = ({ ipfs, file }) => {
             pin: true,
             progress: (bytesLoaded) => setProgress((bytesLoaded / file.size) * 100)
         })
-        console.log(file)
         setCid(addedFile.cid)
     }, [ipfs])
 
