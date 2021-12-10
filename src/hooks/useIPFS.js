@@ -7,14 +7,22 @@ const useIPFS = () => {
   const [isIpfsReady, setIpfsReady] = useState(Boolean(ipfs))
   const [ipfsInitError, setIpfsInitError] = useState(null)
   const options = {
-    // repo: 'metaupload',
-    // config: {
-    //   Addresses: {
-    //     Swarm: [
-    //       '/dns4/metaupload-webrtc-star.herokuapp.com/tcp/443/wss/p2p-webrtc-star/'
-    //     ]
-    //   }
-    // }
+    repo: 'metaupload',
+    // silent: true,
+    relay:{
+      enabled: true,
+      hop: {
+        active: true,
+        enabled: true
+      }
+    },
+    config: {
+      Addresses: {
+        Swarm: [
+          '/dns4/metaupload-webrtc-star.herokuapp.com/tcp/443/wss/p2p-webrtc-star/'
+        ]
+      }
+    }
   }
 
   useEffect(() => {
