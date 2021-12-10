@@ -35,7 +35,6 @@ const File = ({ ipfs, file }) => {
         const key = randomString(16);
         const encryptedFile = await encryptFile(file, key);
         setKey(key);
-        console.log(encryptedFile);
         const addedFile = await ipfs.add({
             path: file.name,
             content: encryptedFile

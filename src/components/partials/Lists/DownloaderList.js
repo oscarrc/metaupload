@@ -1,5 +1,6 @@
 import { Children, cloneElement, useCallback, useState } from "react"
 import { ReactComponent as DownloadIcon } from '../../../assets/icons/download.svg';
+import { decryptFile } from "../../../utils/crypto";
 
 const List = ({ ipfs, children }) => {
     return (
@@ -14,7 +15,7 @@ const List = ({ ipfs, children }) => {
     )
 }
 
-const File = ({ ipfs, file }) => {
+const File = ({ ipfs, file, pass }) => {
     const [ progress, setProgress ] = useState(0);
     const [ downloading, setDownloading ] = useState(false);
     
@@ -32,14 +33,15 @@ const File = ({ ipfs, file }) => {
         
         ipfs.pin.add(file.path);
         
-        const blob = new Blob(chunks, { type: 'application/octet-stream' });
+        const decrypted = await decryptFile(new Blob(chunks, {type: file.type}), pass);
+
         let a = document.createElement('a');
-        a.href = window.URL.createObjectURL(blob);
+        a.href = window.URL.createObjectURL(decrypted);
         a.download = file.name;
         a.click();
         
         setDownloading(false);
-    }, [ipfs])
+    }, [ipfs, pass])
 
     return (                                   
         <li data-type="file">
