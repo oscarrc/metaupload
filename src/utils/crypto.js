@@ -9,18 +9,22 @@ const randomString = (length) => {
     return result;
 }
 
-const encryptFile = (file, key) => {
-    const reader = new FileReader();
-    let encrypted;
+//Read an input file and Encrypt it with crypto-js in AES
+const encryptFile = async (file, key) => {
+    return new Promise((resolve) => {
+        const reader = new FileReader();
 
-    reader.onload = () => {
-        encrypted = AES.encrypt(lib.WordArray.create(reader.result), key).toString();
-    }
+        reader.onloadend = (e) => {
+            const bytes = AES.encrypt(lib.WordArray.create(e.target.result), key);
+            const encrypted = bytes.toString();
+            const encryptedFile = new File([encrypted], file.name, {type: file.type});
+            resolve(encryptedFile);
+        }
 
-    reader.readAsArrayBuffer(file);
-
-    return new Blob([encrypted]);
+        reader.readAsArrayBuffer(file);
+    });
 }
+
 
 const decryptFile = (file, key) => {
     const reader = new FileReader();

@@ -17,7 +17,7 @@ const List = ({ ipfs, children }) => {
 const File = ({ ipfs, file }) => {
     const [ progress, setProgress ] = useState(0);
     const [ downloading, setDownloading ] = useState(false);
-
+    
     const getFile = useCallback(async (file) => {
         let chunks = []
         let donwloaded = 0;

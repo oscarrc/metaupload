@@ -1,4 +1,4 @@
-import { Children, cloneElement, useCallback, useEffect, useState } from "react"
+import { Children, cloneElement, useCallback, useEffect, useState, useRef } from "react"
 import { ReactComponent as CopyIcon } from '../../../assets/icons/copy.svg';
 import { randomString, encryptFile } from '../../../utils/crypto';
 const List = ({ ipfs, children }) => {
@@ -18,17 +18,24 @@ const File = ({ ipfs, file }) => {
     const [ progress, setProgress ] = useState(0);
     const [ cid, setCid ] = useState('');
     const [ key, setKey ] = useState('');
+    const [ wasCopied, setWasCopied ] = useState(false);
+    const copyButton = useRef(null);
 
     const copyToClipboard = (e) => {
         e.stopPropagation();
+        setWasCopied(true);
+        setTimeout(() => {
+            setWasCopied(false);
+            copyButton.current.blur();
+        }, 3000);
         navigator.clipboard.writeText(`${window.location.href}download/${key}:${cid}`);
     }
 
     const addFile = useCallback(async (file) => {
         const key = randomString(16);
-        const encryptedFile = encryptFile(file, key);
+        const encryptedFile = await encryptFile(file, key);
         setKey(key);
-        
+        console.log(encryptedFile);
         const addedFile = await ipfs.add({
             path: file.name,
             content: encryptedFile
@@ -47,7 +54,7 @@ const File = ({ ipfs, file }) => {
             <span>
                 <i>{file.name}</i> 
                 { cid ? 
-                    <button onClick={copyToClipboard} className="outline"  data-tooltip="Copy link">
+                    <button ref={copyButton} onClick={copyToClipboard} className="outline"  data-tooltip={ wasCopied ? 'Copied !' : 'Copy link' }>
                         <CopyIcon />
                     </button> : 
                     null
