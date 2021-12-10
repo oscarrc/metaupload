@@ -32,6 +32,7 @@
   "scripts": {
     "start": "CHOKIDAR_USEPOLLING=true PORT=3001 react-scripts start",
     "build": "react-scripts build",
+    "postbuild": "cp build/index.html build/200.html",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
@@ -44,6 +45,8 @@
   "browserslist": {
     "production": [
       ">0.2%",
+      "not ie <= 99",
+      "not android <= 4.4.4",
       "not dead",
       "not op_mini all"
     ],
