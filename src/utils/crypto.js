@@ -36,13 +36,14 @@ const encryptFile = async (file, key) => {
 }
 
 
-const decryptFile = (file, key) => {    
+const decryptFile = async (file, key) => {    
     return new Promise((resolve) => {
         const reader = new FileReader();
-        
+        console.log(file)
         reader.onloadend = (e) => {
             const words = AES.decrypt(lib.WordArray.create(e.target.result), key);
             const decrypted = wordToByteArray(words).buffer;
+            
             const decryptedFile = new File([decrypted], file.name, {type: file.type});
             
             resolve(decryptedFile);

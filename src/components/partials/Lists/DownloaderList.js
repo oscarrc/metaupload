@@ -22,7 +22,7 @@ const File = ({ ipfs, file, pass }) => {
     const getFile = useCallback(async (file) => {
         let chunks = []
         let donwloaded = 0;
-
+        console.log("Inicial", file)
         setDownloading(true);
 
         for await (const chunk of ipfs.cat(file.path)) {              
@@ -33,8 +33,8 @@ const File = ({ ipfs, file, pass }) => {
         
         ipfs.pin.add(file.path);
         
-        const decrypted = await decryptFile(new Blob(chunks, {type: file.type}), pass);
-
+        const decrypted = await decryptFile(new File(chunks, file.name, {type: file.type}), pass);
+       
         let a = document.createElement('a');
         a.href = window.URL.createObjectURL(decrypted);
         a.download = file.name;
