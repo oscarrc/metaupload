@@ -22,7 +22,7 @@ const App = () => {
           <main>
             <Routes>        
               <Route exact path="/" element={<Home />} />
-              <Route path="/download/:cid" element={<Download />} />
+              <Route path="/download/:file" element={<Download />} />
               <Route path="/privacy" element={<Privacy />} />
               <Route path="/terms" element={<Terms />} />
             </Routes>

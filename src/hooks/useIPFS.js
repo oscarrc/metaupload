@@ -39,7 +39,8 @@ const useIPFS = () => {
 
 const startIpfs = async () => {
     if (ipfs) {
-      console.log('IPFS already started')
+      // console.log('IPFS already started')
+      return
     } else if (window.ipfs && window.ipfs.enable) {
       console.log('Found window.ipfs')
       ipfs = await window.ipfs.enable({ commands: ['id'] })

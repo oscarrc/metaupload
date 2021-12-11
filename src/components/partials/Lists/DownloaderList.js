@@ -1,5 +1,6 @@
 import { Children, cloneElement, useCallback, useState } from "react"
 import { ReactComponent as DownloadIcon } from '../../../assets/icons/download.svg';
+import { decryptFile } from "../../../utils/crypto";
 
 const List = ({ ipfs, children }) => {
     return (
@@ -14,14 +15,14 @@ const List = ({ ipfs, children }) => {
     )
 }
 
-const File = ({ ipfs, file }) => {
+const File = ({ ipfs, file, pass }) => {
     const [ progress, setProgress ] = useState(0);
     const [ downloading, setDownloading ] = useState(false);
-
+    
     const getFile = useCallback(async (file) => {
         let chunks = []
         let donwloaded = 0;
-
+        
         setDownloading(true);
 
         for await (const chunk of ipfs.cat(file.path)) {              
@@ -31,15 +32,16 @@ const File = ({ ipfs, file }) => {
         }
         
         ipfs.pin.add(file.path);
-
-        const blob = new Blob(chunks, { type: 'application/octet-stream' });
+        
+        const decrypted = await decryptFile(chunks, pass);
+       
         let a = document.createElement('a');
-        a.href = window.URL.createObjectURL(blob);
+        a.href = window.URL.createObjectURL(decrypted);
         a.download = file.name;
         a.click();
         
         setDownloading(false);
-    }, [ipfs])
+    }, [ipfs, pass])
 
     return (                                   
         <li data-type="file">
@@ -49,7 +51,7 @@ const File = ({ ipfs, file }) => {
                     <DownloadIcon />
                 </button>
             </span>
-            { progress < 100 && downloading ? <progress value={progress} max="100" ></progress> : null }
+            { progress <= 100 && downloading ? <progress { ...( progress === 100 ? {ideterminate: "true"} : {value: progress} ) } max="100" ></progress> : null }
         </li>
     )
 }

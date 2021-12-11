@@ -1,13 +1,20 @@
-
-
 import { useIPFS } from './../../hooks/useIPFS';
 import { useParams } from "react-router-dom";
 import { useCallback, useEffect, useState } from 'react';
 import { List, File } from "./Lists/DownloaderList";
 
+
+const useFileParams = () => {
+    let { file } = useParams();
+    const params = file.split(':')
+    const cid = params.length === 1 ? params[0] : params[1];
+    const key = params.length === 1 ? '' : params[0];
+    return { cid, key }
+}
+
 const Downloader = () => {
-    const { ipfs, isIpfsReady } = useIPFS();
-    const { cid } = useParams();
+    const { ipfs, isIpfsReady, ipfsInitError } = useIPFS();
+    const { cid, key } = useFileParams();
     const [ files, setFiles ] = useState([]);
     const [ ready, setReady ] = useState(false)
 
@@ -25,19 +32,19 @@ const Downloader = () => {
     }, [ipfs]);
 
     useEffect(() => {
-        if(isIpfsReady) getData(cid)
+        if(isIpfsReady && cid) getData(cid)
     }, [isIpfsReady, cid, getData])
 
     return (
         <div className="downloader">
             <article aria-busy={ !isIpfsReady }>
-                { isIpfsReady ? 
+                { isIpfsReady && !ipfsInitError ? 
                     <div>
                         { files.length >= 1 && ready ?
                             <List ipfs={ipfs}>
-                                { files.map( file => <File key={file.path} file={file} /> ) }
+                                { files.map( file => <File key={file.path} pass={key} file={file} /> ) }
                             </List> :
-                            <p>There are no files available for this CID</p>
+                            <p>There are no files available for this CID or they are no longer available</p>
                         }
                     </div> :
                     null }
