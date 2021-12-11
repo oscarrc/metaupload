@@ -8,16 +8,20 @@ const randomString = (length) => {
     return result;
 }
 
-const wordToByteArray = (wordArray) => {
-    var byteArray = [], word, i, j;
-    for (i = 0; i < wordArray.length; ++i) {
-        word = wordArray[i];
-        for (j = 3; j >= 0; --j) {
-            byteArray.push((word >> 8 * j) & 0xFF);
-        }
+const wordToUint8Array = (wordArray) => {
+    var arrayOfWords = wordArray.hasOwnProperty("words") ? wordArray.words : [];
+    var length = wordArray.hasOwnProperty("sigBytes") ? wordArray.sigBytes : arrayOfWords.length * 4;
+    var uInt8Array = new Uint8Array(length), index=0, word, i;
+    for (i=0; i<length; i++) {
+        word = arrayOfWords[i];
+        uInt8Array[index++] = word >> 24;
+        uInt8Array[index++] = (word >> 16) & 0xff;
+        uInt8Array[index++] = (word >> 8) & 0xff;
+        uInt8Array[index++] = word & 0xff;
     }
-    return byteArray;
+    return uInt8Array;
 }
+
 
 //Read an input file and Encrypt it with crypto-js in AES
 const encryptFile = async (file, key) => {
@@ -25,9 +29,8 @@ const encryptFile = async (file, key) => {
         const reader = new FileReader();
 
         reader.onloadend = async (e) => {
-            const bytes = AES.encrypt(lib.WordArray.create(e.target.result), key);
-            const encrypted = bytes.toString();
-            const encryptedFile = new File([encrypted], file.name, {type: file.type});
+            const encrypted = AES.encrypt(lib.WordArray.create(e.target.result), key).toString();         
+            const encryptedFile = new File([encrypted], file.name, {type: file.type, lastModified: file.lastModified});
             resolve(encryptedFile);
         }
 
@@ -36,20 +39,19 @@ const encryptFile = async (file, key) => {
 }
 
 
-const decryptFile = async (file, key) => {    
+const decryptFile = async (chunks, key) => { 
+    const f = new Blob(chunks);
+    
     return new Promise((resolve) => {
         const reader = new FileReader();
-        console.log(file)
-        reader.onloadend = (e) => {
-            const words = AES.decrypt(lib.WordArray.create(e.target.result), key);
-            const decrypted = wordToByteArray(words).buffer;
-            
-            const decryptedFile = new File([decrypted], file.name, {type: file.type});
-            
+       
+        reader.onloadend = async (e) => {
+            const decrypted  = AES.decrypt(e.target.result, key)
+            const decryptedFile = new Blob([wordToUint8Array(decrypted)]);
             resolve(decryptedFile);
         }
 
-        reader.readAsArrayBuffer(file)
+        reader.readAsText(f)
     })
 }
 

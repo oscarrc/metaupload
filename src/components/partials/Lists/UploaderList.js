@@ -59,7 +59,7 @@ const File = ({ ipfs, file }) => {
                     null
                 }
             </span>
-            { progress <= 100 && !cid ? <progress { ...( progress === 100 ? {ideterminate: "true"} : {value: progress} ) } max="100" ></progress> : null}
+            { progress <= 100 && !cid ? <progress { ...( progress === 100 || progress === 0 ? {ideterminate: "true"} : {value: progress} ) } max="100" ></progress> : null}
         </li>
     )
 }
