@@ -29,7 +29,7 @@ const encryptFile = async (file, key) => {
         const reader = new FileReader();
 
         reader.onloadend = async (e) => {
-            const encrypted = AES.encrypt(lib.WordArray.create(e.target.result), key).toString();         
+            const encrypted = AES.encrypt(lib.WordArray.create(e.target.result), key).toString(); //As base64 ~ 33% overhead        
             const encryptedFile = new File([encrypted], file.name, {type: file.type, lastModified: file.lastModified});
             resolve(encryptedFile);
         }
