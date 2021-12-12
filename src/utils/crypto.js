@@ -39,7 +39,7 @@ const encryptFile = async (file, key) => {
 }
 
 
-const decryptFile = async (chunks, key) => { 
+const decryptFile = async (file, chunks, key) => { 
     const f = new Blob(chunks);
     
     return new Promise((resolve) => {
@@ -47,7 +47,7 @@ const decryptFile = async (chunks, key) => {
        
         reader.onloadend = async (e) => {
             const decrypted  = AES.decrypt(e.target.result, key)
-            const decryptedFile = new Blob([wordToUint8Array(decrypted)]);
+            const decryptedFile = new File([wordToUint8Array(decrypted)], file.name);
             resolve(decryptedFile);
         }
 

@@ -33,7 +33,7 @@ const File = ({ ipfs, file, pass }) => {
         
         ipfs.pin.add(file.path);
         
-        const decrypted = await decryptFile(chunks, pass);
+        const decrypted = await decryptFile(file, chunks, pass);
        
         let a = document.createElement('a');
         a.href = window.URL.createObjectURL(decrypted);
