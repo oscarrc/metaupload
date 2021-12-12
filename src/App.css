@@ -160,8 +160,7 @@ section.variation {
     flex-flow: column;
     justify-content: center;
     align-items: center;
-    min-height: 25vh;    
-    cursor: pointer;
+    min-height: 25vh;
     transition: color var(--transition), border-color var(--transition);
 }
 .uploader article svg, .downloader article>svg {
@@ -174,18 +173,19 @@ section.variation {
     border: 1px dashed var(--color);
     border-radius: var(--border-radius);
     width: 100%;
-    flex: 1;
+    flex: 1;    
+    cursor: pointer;
 }
-.uploader article:hover div, .uploader article div.active{
+.uploader article div:hover, .uploader article div.active{
     border-color: var(--primary)
 }
 .uploader article small {
     display: block;
 }
-.uploader article:hover small, .uploader article div.active small {
+.uploader article div:hover small, .uploader article div.active small {
     color: var(--primary);
 }
-.uploader article:hover div>svg, .uploader article div.active svg {
+.uploader article div:hover>svg, .uploader article div.active svg {
     fill: var(--primary);
 }
 
