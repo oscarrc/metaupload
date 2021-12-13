@@ -12,8 +12,9 @@ const Manage = () => {
     const getPins = useCallback(async () => {
         setIsLoading(true);
         let files = [];
-        for await (const {cid} of ipfs.pin.ls()) {
+        for await (const { cid } of ipfs.pin.ls({type: 'recursive'})) {
             for await (const file of ipfs.ls(cid)) {
+                console.log(file)
                 files.push(file);
             }
         }
