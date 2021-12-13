@@ -10,7 +10,9 @@ const Manager = ({files, ipfs, onDel}) => {
     const [ progress, setProgress ] = useState(0);
 
     const onCopy = (cid) => {
-        navigator.clipboard.writeText(`${window.location.href}download/${cid}`);
+        const url = window.location.href.split('/');
+        const downloadURL = `${url[0]}//${url[2]}/download/${cid}`;
+        navigator.clipboard.writeText(downloadURL);
     }
     const onDelete = (index, cid) => {
         ipfs.pin.rm(cid);    
