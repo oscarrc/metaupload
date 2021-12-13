@@ -211,7 +211,6 @@ section.variation {
 
 /* Files list */
 
-
 /* List */
 ul li[data-type=file] {
     position: relative;
@@ -271,6 +270,11 @@ ul li[data-type=file] progress{
     margin-top: calc(var(--spacing) * 0.2);
     width: calc(100% - 44px);
     transition: all 500ms ease-in-out;
+}
+
+/* MANAGER */
+section#manage .container{
+    text-align: left;
 }
 
 /* FOOTER */

@@ -1,5 +1,4 @@
 import { ReactComponent as DragAndDropIcon } from '../../assets/icons/draganddrop.svg';
-import { ReactComponent as ExpandIcon } from '../../assets/icons/expand.svg';
 import { useDropzone } from 'react-dropzone'
 import { useState } from 'react';
 import { useIPFS } from './../../hooks/useIPFS';
@@ -15,13 +14,6 @@ const Uploader = () => {
     return (
         <div className="uploader">   
             <article {...getRootProps()} aria-busy={!isIpfsReady}>
-                {
-                    isIpfsReady ?
-                        <header>
-                            <ExpandIcon />
-                        </header> :
-                        null
-                }
                 { isIpfsReady && !ipfsInitError ? 
                     <div className={ isDragActive ? 'active' : ''}>                        
                         <input {...getInputProps()} disabled={!isIpfsReady} />                            

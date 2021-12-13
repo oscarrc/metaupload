@@ -9,20 +9,20 @@ const Header = () => {
     return (
         <header className={ themeState.waves ? 'waves' : '' }>
             <nav className="container-fluid">
-            <ul>
-                <li>
-                    <Link to="/">
-                        <img src="/img/logo.svg" width="300" height="80" alt="metaupload" />
-                    </Link>
-                </li>
-            </ul>
-            <ul>
-                { location.pathname !== '/manage' ?
-                    <li><Link to="/manage" className="contrast">Manage</Link></li> :
-                    null
-                }
-                <li><button onClick={toggleTheme} className="round">{ themeState.dark ? '☀' : '🌙'}</button></li>
-            </ul>
+                <ul>
+                    <li>
+                        <Link to="/">
+                            <img src="/img/logo.svg" width="300" height="80" alt="metaupload" />
+                        </Link>
+                    </li>
+                </ul>
+                <ul>
+                    { location.pathname !== '/manage' ?
+                        <li><Link to="/manage" className="contrast">Manage</Link></li> :
+                        null
+                    }
+                    <li><button onClick={toggleTheme} className="round">{ themeState.dark ? '☀' : '🌙'}</button></li>
+                </ul>
             </nav>
         </header>
     )
