@@ -22,7 +22,7 @@ const Uploader = () => {
                                 { files.map( file => <File key={file.path} file={file} /> ) }
                             </List> :          
                             <>
-                                <DragAndDropIcon />
+                                <DragAndDropIcon className="action" />
                                 <small>{isDragActive ? 'Drop files here' : 'Click or drag to upload'}</small>
                             </>
                         }

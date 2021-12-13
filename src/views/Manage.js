@@ -1,5 +1,6 @@
 import { useIPFS } from '../hooks/useIPFS';
 import { useEffect, useCallback, useState } from 'react';
+import { ReactComponent as UploadIcon } from '../assets/icons/upload.svg';
 import Manager from '../components/partials/Manager';
 
 const Manage = () => {    
@@ -9,17 +10,19 @@ const Manage = () => {
 
     const getPins = useCallback(async () => {
         setIsLoading(true);
+        let files = [];
         for await (const {cid} of ipfs.pin.ls()) {
             for await (const file of ipfs.ls(cid)) {
-                setFiles(files.concat(file));
+                files.push(file);
             }
         }
         setIsLoading(false);
-    },[ipfs, files]);
+        setFiles(files);
+    },[ipfs]);
 
     useEffect(() => {
         if(isIpfsReady) getPins();
-    }, [getPins, isIpfsReady]);
+    }, [isIpfsReady, getPins]);
 
     return (
         <section id="manage">
@@ -31,10 +34,15 @@ const Manage = () => {
                         </li>
                     </ul>
                     <ul>
-                        <li>Upload</li>
+                        <li>
+                            <button className="transparent icon"><UploadIcon /></button>
+                        </li>
                     </ul>    
                 </nav>          
-                <Manager files={files} />
+                { files.length ?
+                    <Manager files={files} ipfs={ipfs} onDel={ (index) => { setFiles(files.splice(index, 1))}}/> :
+                    <p>There aren't any files yet</p>
+                }
             </div>
         </section>
     )

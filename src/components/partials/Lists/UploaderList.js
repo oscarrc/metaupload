@@ -53,7 +53,7 @@ const File = ({ ipfs, file }) => {
             <span>
                 <i>{file.name}</i> 
                 { cid ? 
-                    <button ref={copyButton} onClick={copyToClipboard} className="outline"  data-tooltip={ wasCopied ? 'Copied !' : 'Copy link' }>
+                    <button ref={copyButton} onClick={copyToClipboard} className="transparent icon"  data-tooltip={ wasCopied ? 'Copied !' : 'Copy link' }>
                         <CopyIcon />
                     </button> : 
                     null

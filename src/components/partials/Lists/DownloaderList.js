@@ -47,7 +47,7 @@ const File = ({ ipfs, file, pass }) => {
         <li data-type="file">
             <span>
                 <i>{file.name}</i>
-                <button onClick={ () => getFile(file) } className="outline" disabled={ downloading }>
+                <button onClick={ () => getFile(file) } className="transparent icon" disabled={ downloading }>
                     <DownloadIcon />
                 </button>
             </span>

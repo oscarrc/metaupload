@@ -49,6 +49,34 @@ button.round, a[role=button].round{
     border-radius: 50%;
     padding: calc(var(--form-element-spacing-vertical) / 2) calc(var(--form-element-spacing-vertical) / 2.7)
 }
+button.transparent, a[role=button].transparent{
+    --background-color: transparent;
+    --color: var(--primary);
+    border: none;
+}
+button.transparent:hover, a[role=button].transparent:hover{
+    --background-color: transparent;
+    --color: var(--primary-hover);
+    border: none;
+}
+button.icon, a[role=button].transparent{
+    position: relative;
+    display: inline;
+    height: 20px;
+    width: 20px;
+    padding: 15px;
+    border-radius: 100%;
+    top: -4px;
+}
+button.icon svg{
+    margin: 0;
+    padding: 0;
+    position: absolute;    
+    height: 20px;
+    width: 20px;
+    top: 5px;
+    left: 5px;
+}
 
 /* Header */
 #root>header{    
@@ -163,7 +191,7 @@ section.variation {
     min-height: 24vh;
     transition: color var(--transition), border-color var(--transition);
 }
-.uploader article svg, .downloader article svg {
+.uploader article svg.action, .downloader article svg.action {
     width: 50px;
     height: auto;
     margin: var(--spacing);
@@ -245,25 +273,8 @@ ul li[data-type=file] span i{
     text-overflow: ellipsis;
 }
 ul li[data-type=file] span button{
-    position: relative;
-    height: 20px;
-    width: 20px;
-    padding: 15px;
-    border-radius: 100%;
-    border: none;
-    top: -4px;
     margin: 0 20px;
 }
-ul li[data-type=file] span button svg{
-    margin: 0;
-    padding: 0;
-    position: absolute;    
-    height: 20px;
-    width: 20px;
-    top: 5px;
-    left: 5px;
-}
-
 ul li[data-type=file] progress{    
     display: block;
     margin-left: 22px;

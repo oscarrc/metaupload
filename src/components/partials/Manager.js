@@ -1,6 +1,45 @@
 import { convertSize } from '../../utils/sizes';
+import { ReactComponent as DownloadIcon } from '../../assets/icons/download.svg';
+import { ReactComponent as TrashIcon } from '../../assets/icons/trash.svg';
+import { ReactComponent as CopyIcon } from '../../assets/icons/copy.svg';
+import { useState, useCallback } from 'react';
+import { decryptFile } from "../../../utils/crypto";
 
-const Manager = ({files}) => {
+const Manager = ({files, ipfs, onDel}) => {
+    const [ downloading, setDownloading ] = useState(false);
+    const [ progress, setProgress ] = useState(0);
+
+    const onCopy = (cid) => {
+        navigator.clipboard.writeText(`${window.location.href}download/${cid}`);
+    }
+    const onDelete = (index, cid) => {
+        ipfs.pin.rm(cid);    
+        onDel(index);
+    }
+    const onDownload = useCallback(async (file, pass) => {
+        let chunks = []
+        let donwloaded = 0;
+        
+        setDownloading(true);
+
+        for await (const chunk of ipfs.cat(file.path)) {              
+            chunks = chunks.concat(chunk)
+            donwloaded += chunk.length;
+            setProgress((donwloaded / file.size) * 100)
+        }
+        
+        ipfs.pin.add(file.path);
+        
+        const decrypted = await decryptFile(file, chunks, pass);
+       
+        let a = document.createElement('a');
+        a.href = window.URL.createObjectURL(decrypted);
+        a.download = file.name;
+        a.click();
+        
+        setDownloading(false);
+    }, [ipfs])
+
     return (
         <figure>
             <table>
@@ -14,12 +53,16 @@ const Manager = ({files}) => {
                 </thead>
                 <tbody>
                     {
-                        files.map(file => (
-                            <tr key={file.cid}>
+                        files.map((file, index) => (
+                            <tr key={index}>
                                 <td>{file.name}</td>
                                 <td>{convertSize(file.size)}</td>
                                 <td>{file.type}</td>
-                                <td>TODO</td>
+                                <td>
+                                    <button onClick={() => { onCopy(file.cid) }} className="transparent icon"><CopyIcon /></button>
+                                    <button onClick={() => { onDownload(file) }} className="transparent icon"><DownloadIcon /></button>
+                                    <button onClick={() => { onDelete(index, file.cid) }} className="transparent icon"><TrashIcon /></button>
+                                </td>
                             </tr>
                         ))
                     }
