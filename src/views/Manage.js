@@ -2,6 +2,7 @@ import { useIPFS } from '../hooks/useIPFS';
 import { useEffect, useCallback, useState } from 'react';
 import { ReactComponent as UploadIcon } from '../assets/icons/upload.svg';
 import Manager from '../components/partials/Manager';
+import Loading from '../views/Loading';
 
 const Manage = () => {    
     const { ipfs, isIpfsReady } = useIPFS();
@@ -39,9 +40,12 @@ const Manage = () => {
                         </li>
                     </ul>    
                 </nav>          
-                { files.length ?
-                    <Manager files={files} ipfs={ipfs} onDel={ (index) => { setFiles(files.splice(index, 1))}}/> :
-                    <p>There aren't any files yet</p>
+                { isLoading ?
+                    <Loading /> :
+                    files.length ?
+                        <Manager files={files} ipfs={ipfs} onDel={ (index) => { setFiles(files.splice(index, 1))}}/> :
+                        <p>You haven't uploaded any files yet</p>
+                    
                 }
             </div>
         </section>

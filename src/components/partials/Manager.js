@@ -3,7 +3,7 @@ import { ReactComponent as DownloadIcon } from '../../assets/icons/download.svg'
 import { ReactComponent as TrashIcon } from '../../assets/icons/trash.svg';
 import { ReactComponent as CopyIcon } from '../../assets/icons/copy.svg';
 import { useState, useCallback } from 'react';
-import { decryptFile } from "../../../utils/crypto";
+import { decryptFile } from "../../utils/crypto";
 
 const Manager = ({files, ipfs, onDel}) => {
     const [ downloading, setDownloading ] = useState(false);

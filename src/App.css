@@ -37,6 +37,7 @@ main {
 .loader {
     position: fixed;
     top: 0;	
+    left: 0;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -66,7 +67,7 @@ button.icon, a[role=button].transparent{
     width: 20px;
     padding: 15px;
     border-radius: 100%;
-    top: -4px;
+    margin: 0;
 }
 button.icon svg{
     margin: 0;
@@ -273,7 +274,8 @@ ul li[data-type=file] span i{
     text-overflow: ellipsis;
 }
 ul li[data-type=file] span button{
-    margin: 0 20px;
+    margin: 0 20px;    
+    top: -4px;
 }
 ul li[data-type=file] progress{    
     display: block;
@@ -295,7 +297,8 @@ footer {
     margin-top: 30px;
     background-size: cover;
     background-repeat: no-repeat;
-    background-position: top;
+    background-position: top;    
+    z-index: 1;
 }
 footer.grid{
     display: flex;
