@@ -37,7 +37,7 @@ const Manage = () => {
                     </ul>
                     <ul>
                         <li>
-                            <button className="transparent icon"><UploadIcon /></button>
+                            <button className="outline icon"><UploadIcon /></button>
                         </li>
                     </ul>    
                 </nav>          
