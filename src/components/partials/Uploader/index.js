@@ -1,8 +1,8 @@
-import { ReactComponent as DragAndDropIcon } from '../../assets/icons/draganddrop.svg';
+import { ReactComponent as DragAndDropIcon } from '../../../assets/icons/draganddrop.svg';
 import { useDropzone } from 'react-dropzone'
 import { useState } from 'react';
-import { useIPFS } from './../../hooks/useIPFS';
-import { List, File } from "./Lists/UploaderList";
+import { useIPFS } from '../../../hooks/useIPFS';
+import { List, File } from "./List";
 
 const Uploader = () => {
     const [ files, setFiles ] = useState([]);

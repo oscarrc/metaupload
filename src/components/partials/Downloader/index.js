@@ -1,8 +1,7 @@
-import { useIPFS } from './../../hooks/useIPFS';
+import { useIPFS } from '../../../hooks/useIPFS';
 import { useParams } from "react-router-dom";
 import { useCallback, useEffect, useState } from 'react';
-import { List, File } from "./Lists/DownloaderList";
-
+import { List, File } from "./List";
 
 const useFileParams = () => {
     let { file } = useParams();
