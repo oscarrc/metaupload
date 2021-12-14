@@ -1,30 +1,52 @@
-import { useEffect, useState } from 'react'
+import { createContext, useEffect, useState, useContext } from 'react';
 
-const usePWA = () => {
-    const [installation, setInstallation] = useState(null);  
-    const [mode, setMode] = useState(null);
+const InstallPrompt = createContext();
+
+const PWAProvider = ({children}) => {
+    const [deferredEvent, setdeferredEvent] = useState(null);  
+    const [displayMode, setDisplayMode] = useState(null);
+    const [installable, setinstallable] = useState(false);
 
     const getLaunchMode = () => {
         const isStandalone = window.matchMedia('(display-mode: standalone)').matches;
         if (document.referrer.startsWith('android-app://')) {
-            setMode('twa');
+            setDisplayMode('twa');
         } else if (navigator.standalone || isStandalone) {
-            setMode('standalone');
+            setDisplayMode('standalone');
         }
-        setMode('browser');
+        setDisplayMode('browser');
     }
     
     const catchInstallPrompt = (e) => {
         e.preventDefault();
-        setInstallation(e);
+        setinstallable(true);
+        setdeferredEvent(e);
+    }
+
+    const promptInstall = () => {
+        if(deferredEvent) deferredEvent.prompt();
+
+        deferredEvent.userChoice.then((choiceResult) => {
+            console.log(choiceResult);
+        });
     }
     
     useEffect(() =>  {
         getLaunchMode();
-        if(mode === 'browser') window.addEventListener('beforeinstallprompt', catchInstallPrompt)
-    }, [mode]);
+        window.addEventListener('beforeinstallprompt', catchInstallPrompt)
+    }, []);
 
-    return { installation, mode }
+    return (
+        <InstallPrompt.Provider value={{ promptInstall, displayMode, installable }}>
+            {children}
+        </InstallPrompt.Provider>
+    )
 }
 
-export { usePWA };
+const usePWA = () => {
+    const context = useContext(InstallPrompt);
+    if(context === undefined) throw new Error("usePWA must be used within a PWAProvider")
+    return context;
+}
+
+export { PWAProvider, usePWA };
