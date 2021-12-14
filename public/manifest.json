@@ -1,6 +1,13 @@
 {
   "short_name": "Metaupload",
   "name": "Metaupload. Decentralized file sharing",
+  "screenshots": [
+    {
+      "src": "img/screenshot.png",
+      "type": "image/png",
+      "sizes": "1600x761"
+    }
+  ],
   "icons": [
     {
       "src": "icons/icon-72x72.png",
