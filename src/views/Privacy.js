@@ -18,6 +18,7 @@ const Privacy = () => {
                        Those users are not aware of the data stored on their computers since it's encrypted. They're merely seeders for your content.
                     </p>
                     <p className="prose"><strong>Although all the information is encrypted, the software hasn't been audited, so use it at your own risk.</strong></p>
+                    <p className="prose">For better privacy, make sure you only use the software in a computer you own, avoiding uploading files in public computers.</p>
                 </div>
             </section>
         </div>
