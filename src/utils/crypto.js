@@ -1,12 +1,4 @@
-import { AES, lib } from 'crypto-js'
-
-const randomString = (length) => {
-    const chars = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-    let result = '';
-    for (var i = length; i > 0; --i) 
-        result += chars[Math.floor(Math.random() * chars.length)];
-    return result;
-}
+import { AES, PBKDF2, lib} from 'crypto-js'
 
 const wordToUint8Array = (wordArray) => {
     var arrayOfWords = wordArray.hasOwnProperty("words") ? wordArray.words : [];
@@ -22,8 +14,14 @@ const wordToUint8Array = (wordArray) => {
     return uInt8Array;
 }
 
+const deriveKey = async (password, salt) => {
+    const key = await PBKDF2(password, salt, {
+        keySize: 128 / 32,
+        iterations: 5000
+    });
+    return key.toString();
+}
 
-//Read an input file and Encrypt it with crypto-js in AES
 const encryptFile = async (file, key) => {
     return new Promise((resolve) => {
         const reader = new FileReader();
@@ -37,7 +35,6 @@ const encryptFile = async (file, key) => {
         reader.readAsArrayBuffer(file);
     });
 }
-
 
 const decryptFile = async (file, chunks, key) => { 
     const f = new Blob(chunks);
@@ -55,4 +52,4 @@ const decryptFile = async (file, chunks, key) => {
     })
 }
 
-export { randomString, encryptFile, decryptFile };
+export { encryptFile, decryptFile, deriveKey };

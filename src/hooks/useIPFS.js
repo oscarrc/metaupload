@@ -39,7 +39,6 @@ const useIPFS = () => {
 
 const startIpfs = async () => {
     if (ipfs) {
-      // console.log('IPFS already started')
       return
     } else if (window.ipfs && window.ipfs.enable) {
       console.log('Found window.ipfs')
@@ -50,7 +49,7 @@ const startIpfs = async () => {
         ipfs = await create(options)
         console.timeEnd('IPFS Started')
       } catch (error) {
-        console.error('IPFS init error:', error)
+        // console.error('IPFS init error:', error)
         ipfs = null
         setIpfsInitError(error)
       }

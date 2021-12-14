@@ -1,6 +1,6 @@
 import { Children, cloneElement, useCallback, useEffect, useState, useRef } from "react"
 import { ReactComponent as CopyIcon } from '../../../assets/icons/copy.svg';
-import { randomString, encryptFile } from '../../../utils/crypto';
+import { encryptFile, deriveKey } from '../../../utils/crypto';
 const List = ({ ipfs, children }) => {
     return (
         <ul>
@@ -31,10 +31,10 @@ const File = ({ ipfs, file }) => {
         navigator.clipboard.writeText(`${window.location.href}download/${key}:${cid}`);
     }
 
-    const addFile = useCallback(async (file) => {
-        const key = randomString(16);
-        const encryptedFile = await encryptFile(file, key);
-        setKey(key);
+    const addFile = useCallback(async (file) => {        
+        const keys = await ipfs.key.list()
+        const derivedKey = await deriveKey(file.name, keys[0].id); 
+        const encryptedFile = await encryptFile(file, derivedKey);
         const addedFile = await ipfs.add({
             path: file.name,
             content: encryptedFile
@@ -42,7 +42,9 @@ const File = ({ ipfs, file }) => {
             wrapWithDirectory: true,
             pin: true,
             progress: (bytesLoaded) => setProgress((bytesLoaded / encryptedFile.size) * 100)
-        })
+        })        
+
+        setKey(derivedKey);
         setCid(addedFile.cid)
     }, [ipfs])
 
