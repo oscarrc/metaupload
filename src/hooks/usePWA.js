@@ -1,8 +1,6 @@
-import { createContext, useEffect, useState, useContext } from 'react';
+import { useEffect, useState } from 'react';
 
-const InstallPrompt = createContext();
-
-const PWAProvider = ({children}) => {
+const usePWA = () => {
     const [deferredEvent, setdeferredEvent] = useState(null);  
     const [displayMode, setDisplayMode] = useState(null);
     const [installable, setinstallable] = useState(false);
@@ -26,8 +24,8 @@ const PWAProvider = ({children}) => {
     const promptInstall = () => {
         if(deferredEvent) deferredEvent.prompt();
 
-        deferredEvent.userChoice.then((choiceResult) => {
-            console.log(choiceResult);
+        deferredEvent.userChoice.then(({outcome}) => {
+            if(outcome === 'accepted') setinstallable(false)
         });
     }
     
@@ -36,17 +34,7 @@ const PWAProvider = ({children}) => {
         window.addEventListener('beforeinstallprompt', catchInstallPrompt)
     }, []);
 
-    return (
-        <InstallPrompt.Provider value={{ promptInstall, displayMode, installable }}>
-            {children}
-        </InstallPrompt.Provider>
-    )
+    return  { promptInstall, displayMode, installable }
 }
 
-const usePWA = () => {
-    const context = useContext(InstallPrompt);
-    if(context === undefined) throw new Error("usePWA must be used within a PWAProvider")
-    return context;
-}
-
-export { PWAProvider, usePWA };
+export { usePWA };
