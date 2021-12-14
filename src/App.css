@@ -43,6 +43,10 @@ main {
     100%{ transform:rotate(0) scale(1) }
 }
 
+.prose{
+    text-align: left;
+}
+
 /* Loader */
 .loader {
     position: fixed;
