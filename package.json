@@ -34,6 +34,7 @@
     "start": "CHOKIDAR_USEPOLLING=true PORT=3001 react-scripts start",
     "build": "react-scripts build",
     "postbuild": "cp build/index.html build/200.html",
+    "deploy": "surge build metaupload.oscarrc.me",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
