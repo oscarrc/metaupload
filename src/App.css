@@ -6,7 +6,7 @@
     --primary-hover: #b75543 !important;
     --contrast: #ddca93 !important;
     --contrast: #ddca93 !important;
-    --contrast-hover: white !important;
+    --contrast-hover: white;
     --contrast-inverse: #000 !important;
     --variation: rgba(196, 196, 196, .15);
 }
@@ -31,7 +31,17 @@ main {
     0% { opacity: 1; display: block; } 
     100% { opacity: 0; display: none; }
 }
-
+@keyframes wiggle{
+    0%{ transform:rotate(0)cale(1) }
+    60%{ transform:rotate(0) scale(1) }
+    75%{ transform:rotate(0) scale(1.12) }
+    80%{ transform:rotate(0) scale(1.1) }
+    84%{ transform:rotate(-10deg) scale(1.1) }
+    88%{ transform:rotate(10deg) scale(1.1) }
+    92%{ transform:rotate(-10deg) scale(1.1) }
+    96%{ transform:rotate(10deg) scale(1.1) }
+    100%{ transform:rotate(0) scale(1) }
+}
 
 /* Loader */
 .loader {
@@ -46,6 +56,9 @@ main {
 }
 
 /* Buttons */
+button{
+    margin-bottom: 0;
+}
 button.round, a[role=button].round{
     border-radius: 50%;
     padding: calc(var(--form-element-spacing-vertical) / 2) calc(var(--form-element-spacing-vertical) / 2.7)
@@ -59,6 +72,10 @@ button.transparent:hover, a[role=button].transparent:hover{
     --background-color: transparent;
     --color: var(--primary-hover);
     border: none;
+}
+button.contrast:hover, a[role=button].contrast:hover{
+    --background-color: #ae9569;
+    --border-color: #ae9569;
 }
 button.icon, a[role=button].transparent{
     position: relative;
@@ -78,14 +95,19 @@ button.icon svg{
     top: 5px;
     left: 5px;
 }
-
+button img, a[role="button"] img {
+    margin-right: calc(var(--spacing) / 2);
+    height:20px;
+    display: initial;
+    animation: wiggle 3s infinite;
+}
 /* Header */
 #root>header{    
     z-index: 1;
     position: fixed;
     width: 100%;
 }
-nav button, a[role=button]{
+nav button, nav a[role=button]{
     margin-right: calc(var(--typography-spacing-vertical)/ 4);
     padding: calc(var(--form-element-spacing-vertical) / 2) var(--form-element-spacing-horizontal);
 }
@@ -97,7 +119,7 @@ nav button, a[role=button]{
     -webkit-transition: all 0.5s linear;
     -o-transition: all 0.5s linear;
     transition: all 0.5s linear;
-    background-image: url(assets/img/wave-header.svg);
+    background-image: url('assets/img/wave-header.svg');
     background-position: 0 90%;
     background-repeat: no-repeat;
     background-size: cover;
@@ -125,9 +147,6 @@ section h2:after{
     display: block;
 }
 
-section a img {
-    max-width: 60vw;
-}
 @media (min-width: 768px) {
     section a img {
         max-width: 40vw;
@@ -285,6 +304,14 @@ ul li[data-type=file] progress{
     transition: all 500ms ease-in-out;
 }
 
+/*  CALL TO ACTION */
+#callToAction .grid{
+    margin: 0 auto;
+    justify-content: center;
+    align-items: center;
+    gap: var(--block-spacing-vertical);
+}
+
 /* MANAGER */
 section#manage .container{
     text-align: left;
@@ -292,7 +319,7 @@ section#manage .container{
 
 /* FOOTER */
 footer {
-    background-image: url(assets/img/wave-footer.svg);
+    background-image: url('assets/img/wave-footer.svg');
     padding-top: 60px;
     margin-top: 30px;
     background-size: cover;

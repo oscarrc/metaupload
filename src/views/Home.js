@@ -2,7 +2,7 @@ import FilesHero from '../components/heros/FilesHero'
 import Uploader from '../components/partials/Uploader'
 import About from '../components/sections/AboutSection'
 import HowTo from '../components/sections/HowToSection'
-import PoweredBy from '../components/sections/PoweredBy'
+import CallToAction from '../components/sections/CallToAction'
 
 const Home = () => {
     return (
@@ -12,7 +12,7 @@ const Home = () => {
             </FilesHero>
             <About />
             <HowTo />
-            <PoweredBy />
+            <CallToAction />
         </div>
     )
 }
