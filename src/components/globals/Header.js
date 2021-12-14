@@ -1,11 +1,9 @@
 import { useTheme } from "../../hooks/useThemeContext";
 import { Link } from "react-router-dom";
 import { useLocation } from 'react-router-dom'
-import { usePWA } from "../../hooks/usePWA";
 
 const Header = () => {
     const { themeState, themeDispatch } = useTheme();
-    const { installation } = usePWA();
     const location = useLocation();
     const toggleTheme = () => themeDispatch({type:"toggleTheme"})
    
@@ -20,10 +18,6 @@ const Header = () => {
                     </li>
                 </ul>
                 <ul>
-                    { installation ?
-                        <li><button onClick={ () => installation.prompt() } className="contrast">Install</button></li> :
-                        null
-                    }
                     { location.pathname !== '/manage' ?
                         <li><Link to="/manage" className="contrast">Manage</Link></li> :
                         null

@@ -1,15 +1,15 @@
 import { usePWA } from '../../hooks/usePWA';
 
 const CallToAction = () => {
-    const { install } = usePWA();
+    const { installation } = usePWA();
 
     return (
         <section id="callToAction">
             <div className="container">  
                 <h2>Do you like Metaupload?</h2>                                
                 <div className="grid">                    
-                    { install ?
-                        <button onClick={install.prompt}>
+                    { installation ?
+                        <button onClick={installation.prompt}>
                             <img src="/img/icon.svg" alt="Install Metaupload"/>
                             Install the app
                         </button> :
