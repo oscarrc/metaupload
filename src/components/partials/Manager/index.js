@@ -1,10 +1,33 @@
 
+import { useIPFS } from '../../../hooks/useIPFS';
 import { List, File } from "./List";
+import { useEffect, useState, useCallback } from 'react';
 
-const Manager = ({files, ipfs, onDel}) => {
+const Manager = () => {
+    const { ipfs, isIpfsReady } = useIPFS();
+    const [ files, setFiles ] = useState([]);
+    const [ isLoading, setIsLoading ] = useState(true);
+
+    const getPins = useCallback(async () => {
+        setIsLoading(true);
+        let files = [];
+        for await (const { cid } of ipfs.pin.ls({type: 'recursive'})) {
+            for await (const file of ipfs.ls(cid)) {
+                console.log(file)
+                files.push(file);
+            }
+        }
+        setIsLoading(false);
+        setFiles(files);
+    },[ipfs]);
+
+    useEffect(() => {
+        if(isIpfsReady) getPins();
+    }, [isIpfsReady, getPins]);
+
     return (
         <figure>
-            <table>
+            <table aria-busy={isLoading}>
                 <thead>
                     <tr>
                         <th>Name</th>
@@ -16,7 +39,7 @@ const Manager = ({files, ipfs, onDel}) => {
                 <List ipfs={ipfs}>
                     {
                         files.map((file, index) => (
-                            <File index={index} file={file} onDel={onDel} />
+                            <File index={index} file={file} onDel={ (index) => { setFiles(files.splice(index, 1))} } />
                         ))
                     }
                 </List>
