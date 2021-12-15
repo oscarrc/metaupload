@@ -28,7 +28,6 @@ const File = ({ ipfs, index, file, delCallback }) => {
         navigator.clipboard.writeText(downloadURL);
     }
     const onDelete = (index, cid) => {
-        console.log(ipfs)
         ipfs.pin.rm(cid);    
         delCallback(index);
     }

@@ -26,6 +26,14 @@ const Manager = () => {
         setFiles(f);
     }
 
+    const renderFiles = (files) => {
+        const rendered = []
+        files.forEach((file, index) => (
+            rendered.push(<File key={index} index={index} file={file} delCallback={onDelete} />)
+        ))
+        return rendered
+    }
+
     useEffect(() => {
         if(isIpfsReady && ipfs) getPins();
     }, [isIpfsReady, ipfs, getPins]);
@@ -42,11 +50,7 @@ const Manager = () => {
                     </tr>
                 </thead>
                 <List ipfs={ipfs}>
-                    {
-                        files.map((file, index) => (
-                            <File key={index} index={index} file={file} delCallback={onDelete} />
-                        ))
-                    }
+                    { renderFiles(files) }
                 </List>
             </table>
         </figure>
