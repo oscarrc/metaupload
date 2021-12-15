@@ -392,6 +392,6 @@ div[role="alertdialog"]{
     backdrop-filter: blur(5px);
 }
 
-div[role="alertdialog"] .uploader {
-    
+body.modal-open{
+    overflow: hidden;
 }

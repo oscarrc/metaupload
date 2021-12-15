@@ -21,8 +21,8 @@ const Manager = () => {
     },[ipfs]);
 
     useEffect(() => {
-        if(isIpfsReady) getPins();
-    }, [isIpfsReady, getPins]);
+        if(isIpfsReady && ipfs) getPins();
+    }, [isIpfsReady, ipfs, getPins]);
 
     return (
         <figure>
