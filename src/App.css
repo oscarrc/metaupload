@@ -320,7 +320,17 @@ ul li[data-type=file] progress{
 section#manage .container{
     text-align: left;
 }
-
+table[aria-busy=true]::before{
+    position: absolute;
+    left: 50%;
+    margin-top: var(--block-spacing-vertical);
+}
+table td {
+    transition: all 500ms ease-in;
+}
+table td progress {
+    margin-top: calc(var(--spacing) * .5)
+}
 /* FOOTER */
 footer {
     background-image: url('assets/img/wave-footer.svg');

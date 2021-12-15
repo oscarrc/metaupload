@@ -13,7 +13,6 @@ const Manager = () => {
         let files = [];
         for await (const { cid } of ipfs.pin.ls({type: 'recursive'})) {
             for await (const file of ipfs.ls(cid)) {
-                console.log(file)
                 files.push(file);
             }
         }
@@ -39,7 +38,7 @@ const Manager = () => {
                 <List ipfs={ipfs}>
                     {
                         files.map((file, index) => (
-                            <File index={index} file={file} onDel={ (index) => { setFiles(files.splice(index, 1))} } />
+                            <File key={index} index={index} file={file} onDel={ (index) => { setFiles(files.splice(index, 1))} } />
                         ))
                     }
                 </List>

@@ -55,14 +55,20 @@ const File = ({ ipfs, index, file, onDel }) => {
         setDownloading(false);
     }, [ipfs])
 
-    return (                                   
+    return (   
         <tr>
-            <td>{file.name}</td>
+            <td>
+                {file.name}                    
+                { progress <= 100 && downloading ? 
+                    <progress { ...( progress === 100 ? {ideterminate: "true"} : {value: progress} ) } max="100" ></progress>:
+                    null
+                }
+            </td>
             <td>{convertSize(file.size)}</td>
             <td>{file.type}</td>
             <td>
                 <button onClick={() => { onCopy(file.cid) }} className="transparent icon"><CopyIcon /></button>
-                <button onClick={() => { onDownload(file) }} className="transparent icon"><DownloadIcon /></button>
+                <button disabled={downloading} onClick={() => { onDownload(file) }} className="transparent icon"><DownloadIcon /></button>
                 <button onClick={() => { onDelete(index, file.cid) }} className="transparent icon"><TrashIcon /></button>
             </td>
         </tr>
