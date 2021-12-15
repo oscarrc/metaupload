@@ -11,7 +11,7 @@ const Manager = () => {
     const getPins = useCallback(async () => {
         setIsLoading(true);
         let files = [];
-        for await (const { cid } of ipfs.pin.ls({type: 'recursive'})) {
+        for await (const { cid } of ipfs.pin.ls()) {
             for await (const file of ipfs.ls(cid)) {
                 files.push(file);
             }
@@ -19,6 +19,12 @@ const Manager = () => {
         setIsLoading(false);
         setFiles(files);
     },[ipfs]);
+
+    const onDelete = (index) => {
+        const f = files;
+        f.splice(index, 1);
+        setFiles(f);
+    }
 
     useEffect(() => {
         if(isIpfsReady && ipfs) getPins();
@@ -38,7 +44,7 @@ const Manager = () => {
                 <List ipfs={ipfs}>
                     {
                         files.map((file, index) => (
-                            <File key={index} index={index} file={file} onDel={ (index) => { setFiles(files.splice(index, 1))} } />
+                            <File key={index} index={index} file={file} ipfs={ipfs} delCallback={onDelete} />
                         ))
                     }
                 </List>

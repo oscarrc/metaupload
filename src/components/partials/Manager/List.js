@@ -18,7 +18,7 @@ const List = ({ ipfs, children }) => {
     )
 }
 
-const File = ({ ipfs, index, file, onDel }) => {    
+const File = ({ ipfs, index, file, delCallback }) => {    
     const [ downloading, setDownloading ] = useState(false);
     const [ progress, setProgress ] = useState(0);
 
@@ -29,7 +29,7 @@ const File = ({ ipfs, index, file, onDel }) => {
     }
     const onDelete = (index, cid) => {
         ipfs.pin.rm(cid);    
-        onDel(index);
+        delCallback(index);
     }
     const onDownload = useCallback(async (file, pass) => {
         let chunks = []
