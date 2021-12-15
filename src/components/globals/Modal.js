@@ -28,8 +28,8 @@ const Modal = ({children, show, toggle}) => {
     if(!show) return null;
     
     return (
-        <div role="alertdialog">
-            <div ref={ref}>
+        <div className="fluid-container" role="alertdialog">
+            <div className="content" ref={ref}>
                 { children }
             </div>
         </div>

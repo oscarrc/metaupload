@@ -8,7 +8,7 @@ const useIPFS = () => {
   const [ipfsInitError, setIpfsInitError] = useState(null)
   const options = {
     repo: 'metaupload',
-    // silent: true,
+    silent: true,
     relay:{
       enabled: true,
       hop: {
@@ -27,7 +27,7 @@ const useIPFS = () => {
 
   useEffect(() => {
     startIpfs()
-    // return function cleanup () {
+    // return () => {
     //   if (ipfs && ipfs.stop) {
     //     console.log('Stopping IPFS')
     //     ipfs.stop().catch(err => console.error(err))
@@ -41,13 +41,13 @@ const useIPFS = () => {
     if (ipfs) {
       return
     } else if (window.ipfs && window.ipfs.enable) {
-      console.log('Found window.ipfs')
+      // console.log('Found window.ipfs')
       ipfs = await window.ipfs.enable({ commands: ['id'] })
     } else {
       try {
-        console.time('IPFS Started')
+        // console.time('IPFS Started')
         ipfs = await create(options)
-        console.timeEnd('IPFS Started')
+        // console.timeEnd('IPFS Started')
       } catch (error) {
         ipfs = null
         setIpfsInitError(error)
