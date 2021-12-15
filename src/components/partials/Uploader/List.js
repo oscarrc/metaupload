@@ -26,7 +26,7 @@ const File = ({ ipfs, file }) => {
         setWasCopied(true);
         setTimeout(() => {
             setWasCopied(false);
-            copyButton.current.blur();
+            copyButton.current?.blur();
         }, 3000);
         navigator.clipboard.writeText(`${window.location.href}download/${key}:${cid}`);
     }
@@ -40,10 +40,8 @@ const File = ({ ipfs, file }) => {
             content: encryptedFile
         },{
             wrapWithDirectory: true,
-            pin: true,
             progress: (bytesLoaded) => setProgress((bytesLoaded / encryptedFile.size) * 100)
-        })        
-
+        })    
         setKey(derivedKey);
         setCid(addedFile.cid)
     }, [ipfs])

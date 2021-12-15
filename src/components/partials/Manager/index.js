@@ -44,7 +44,7 @@ const Manager = () => {
                 <List ipfs={ipfs}>
                     {
                         files.map((file, index) => (
-                            <File key={index} index={index} file={file} ipfs={ipfs} delCallback={onDelete} />
+                            <File key={index} index={index} file={file} delCallback={onDelete} />
                         ))
                     }
                 </List>
