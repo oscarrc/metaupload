@@ -6,8 +6,8 @@ import { List, File } from "./List";
 const useFileParams = () => {
     let { file } = useParams();
     const params = file.split(':')
-    const cid = params.length === 1 ? params[0] : params[1];
-    const key = params.length === 1 ? '' : params[0];
+    const cid = params[0];
+    const key = params.length === 1 ? params[1] : '';
     return { cid, key }
 }
 

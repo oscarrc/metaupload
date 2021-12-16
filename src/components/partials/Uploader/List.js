@@ -28,7 +28,7 @@ const File = ({ ipfs, file }) => {
             setWasCopied(false);
             copyButton.current?.blur();
         }, 3000);
-        navigator.clipboard.writeText(`${window.location.href}download/${key}:${cid}`);
+        navigator.clipboard.writeText(`${window.location.href}download/${cid}:${key}`);
     }
 
     const addFile = useCallback(async (file) => {        
