@@ -16,13 +16,15 @@ const useIPFS = () => {
         enabled: true
       }
     },
-    // config: {
-    //   Addresses: {
-    //     Swarm: [
-    //       '/dns4/metaupload-webrtc-star.herokuapp.com/tcp/443/wss/p2p-webrtc-star/'
-    //     ]
-    //   }
-    // }
+    config: {
+      Addresses: {
+        Swarm: [
+          '/dns4/metaupload-webrtc-star.herokuapp.com/tcp/443/wss/p2p-webrtc-star/',
+          '/dns4/wrtc-star1.par.dwebops.pub/tcp/443/wss/p2p-webrtc-star',
+          '/dns4/wrtc-star2.sjc.dwebops.pub/tcp/443/wss/p2p-webrtc-star'
+        ]
+      }
+    }
   }
 
   useEffect(() => {
@@ -42,7 +44,7 @@ const useIPFS = () => {
       return
     } else if (window.ipfs && window.ipfs.enable) {
       // console.log('Found window.ipfs')
-      ipfs = await window.ipfs.enable({ commands: ['id'] })
+      ipfs = await window.ipfs.enable({ commands: ['id'] })      
     } else {
       try {
         // console.time('IPFS Started')

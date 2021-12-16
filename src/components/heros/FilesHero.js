@@ -1,7 +1,7 @@
 import useInView from "react-cool-inview";
 import { useTheme } from "../../hooks/useThemeContext";
 
-const FilesHero = ({title, subtitle, children}) => {
+const FilesHero = ({title, subtitle, text, children}) => {
     const { themeDispatch } = useTheme();
     
     const { observe } = useInView({
@@ -17,6 +17,7 @@ const FilesHero = ({title, subtitle, children}) => {
                     <div>
                         <h1>{title}</h1>
                         <h6 className="contrast">{subtitle}</h6>
+                        { text ? <small><i>{text}</i></small> : null }
                         <br />  
                         { children }     
                     </div>                    
