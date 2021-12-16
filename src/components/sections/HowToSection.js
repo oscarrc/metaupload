@@ -11,7 +11,7 @@ const HowTo = () => {
                 <p>
                     The content upload will be encrypted and thus it will be accesible only to others with the encryption key which by default is included in the link:
                 </p>
-                <p className="centered">https://metaupload.oscarrc.me/download/<mark>ContentID</mark><strong>:</strong><mark>KEY</mark></p>
+                <p className="centered break-words">https://metaupload.oscarrc.me/download/<mark>ContentID</mark><strong>:</strong><mark>KEY</mark></p>
             </div>
         </section>
     )

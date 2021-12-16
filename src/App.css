@@ -28,6 +28,9 @@ main {
 .centered{
     text-align: center;
 }
+.break-words{
+    word-break: break-all;
+}
 
 /* Animations */
 @keyframes fadeOut { 
