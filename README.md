@@ -27,6 +27,11 @@ Metaupload™ works like a classic p2p file sharing software, that means you run
 
 The content upload will be encrypted and thus it will be accesible only to others with the encryption key.
 
+### To Do
+- [ ] Optimize encryption / decryption of large files
+- [ ] Allow folder sharing
+- [ ] Add a file manager, maybe?
+
 ### Found a bug?
 
 Open an [issue](https://github.com/oscarrc/metaupload/issues) and let me know.
