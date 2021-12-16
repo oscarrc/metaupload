@@ -25,6 +25,9 @@ main {
     flex-flow: column;
     min-height: 100vh;
 }
+.centered{
+    text-align: center;
+}
 
 /* Animations */
 @keyframes fadeOut { 
