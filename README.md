@@ -4,7 +4,7 @@
 
 Decentralized file sharing based on IPFS. Proof of concept.
 
-![Metaupload](https://github.com/oscarrc/metaupload/blob/master/public/assets/img/screenshot.png?raw=true "Metaupload. Decentralized file sharing")
+![Metaupload](https://raw.githubusercontent.com/oscarrc/metaupload/master/public/img/screenshot.png "Metaupload. Decentralized file sharing")
 
 <table>
   <tr>
