@@ -7,7 +7,7 @@ const useFileParams = () => {
     let { file } = useParams();
     const params = file.split(':')
     const cid = params[0];
-    const key = params.length === 1 ? params[1] : '';
+    const key = params[1] || '';
     return { cid, key }
 }
 

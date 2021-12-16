@@ -16,13 +16,13 @@ const useIPFS = () => {
         enabled: true
       }
     },
-    config: {
-      Addresses: {
-        Swarm: [
-          '/dns4/metaupload-webrtc-star.herokuapp.com/tcp/443/wss/p2p-webrtc-star/'
-        ]
-      }
-    }
+    // config: {
+    //   Addresses: {
+    //     Swarm: [
+    //       '/dns4/metaupload-webrtc-star.herokuapp.com/tcp/443/wss/p2p-webrtc-star/'
+    //     ]
+    //   }
+    // }
   }
 
   useEffect(() => {
