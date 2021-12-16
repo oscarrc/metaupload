@@ -16,8 +16,8 @@ const wordToUint8Array = (wordArray) => {
 
 const deriveKey = async (password, salt) => {
     const key = await PBKDF2(password, salt, {
-        keySize: 128 / 32,
-        iterations: 5000
+        keySize: 64 / 32,
+        iterations: 1000
     });
     return key.toString();
 }

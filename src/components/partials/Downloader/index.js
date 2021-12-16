@@ -26,8 +26,7 @@ const Downloader = () => {
         }
         
         setFiles(files);
-        setTimeout( () => setReady(true), 1000)
-        // eslint-disable-next-line react-hooks/exhaustive-deps
+        setReady(true)
     }, [ipfs]);
 
     useEffect(() => {
@@ -36,17 +35,18 @@ const Downloader = () => {
 
     return (
         <div className="downloader">
-            <article aria-busy={ !isIpfsReady }>
-                { isIpfsReady && !ipfsInitError ? 
+            <article aria-busy={ !isIpfsReady || !ready }>
+                { isIpfsReady && !ipfsInitError && ready ? 
                     <div>
-                        { files.length >= 1 && ready ?
+                        { files.length >= 1 ?
                             <List ipfs={ipfs}>
                                 { files.map( file => <File key={file.path} pass={key} file={file} /> ) }
                             </List> :
                             <p>There are no files available for this CID or they are no longer available</p>
                         }
                     </div> :
-                    null }
+                    null 
+                }
             </article>
         </div>
     )

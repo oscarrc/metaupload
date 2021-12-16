@@ -32,7 +32,7 @@ const File = ({ ipfs, file, pass }) => {
         }
         
         ipfs.pin.add(file.path);
-        
+
         const decrypted = await decryptFile(file, chunks, pass);
        
         let a = document.createElement('a');
@@ -50,8 +50,8 @@ const File = ({ ipfs, file, pass }) => {
                 <button onClick={ () => getFile(file) } className="transparent icon" disabled={ downloading }>
                     <DownloadIcon />
                 </button>
-            </span>
-            { progress <= 100 && downloading ? <progress { ...( progress === 100 ? {ideterminate: "true"} : {value: progress} ) } max="100" ></progress> : null }
+            </span>            
+            { progress <= 100 && downloading ? <progress { ...( progress === 100 ? {ideterminate: "true"} : {value: progress} ) } max="100" >{progress} / 100</progress> : null }
         </li>
     )
 }
