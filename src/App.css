@@ -106,6 +106,8 @@ button img, a[role="button"] img {
     margin-right: calc(var(--spacing) / 2);
     height:20px;
     display: initial;
+}
+button:hover img, a[role="button"]:hover img {    
     animation: wiggle 3s infinite;
 }
 /* Header */
